@@ -1,3 +1,8 @@
+#
+# todo:
+# - add python subpackage
+# - fix static and devel subpackages
+#
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
@@ -11,7 +16,7 @@ Patch0:		%{name}-python.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gob2 >= 2.0.6
+BuildRequires:	gob2 >= 2.0.8
 BuildRequires:	libbtctl-devel >= 0.4
 BuildRequires:	libgnomeui-devel
 BuildRequires:	libtool
@@ -48,9 +53,24 @@ pozwala wysy³aæ pliki. Jest u¿ywany przez modu³ gnome-vfs - wystarczy
 wpisaæ bluetooth:/// w Nautilusie i przeci±gn±æ plik na urz±dzenie
 docelowe.
 
+%package devel
+Summary:	Header files for gnome bluetooth subsystem
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Header files for gnome bluetooth subsystem.
+
+%package static
+Summary:	Static gnome bluetooth library
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static gnome bluetooth library.
+
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 rm -f missing
@@ -76,6 +96,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/*.so.*
+%attr(755,root,root) %{_libdir}/bonobo/*.so
 %{_libdir}/bonobo/servers/*
 %{_datadir}/%{name}
 %{_desktopdir}/*
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.so
+%{_includedir}/*
+%{_pkgconfigdir}/*
+
+%files static
+%defattr(644,root,root,755)
+#%{_libdir}/*.a

@@ -1,18 +1,15 @@
-#
-# todo:
-# - fix static and devel subpackages
-# - review dependencies (gnome python packages? pygtk?)
-#
+
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.5.1
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://downloads.usefulinc.com/gnome-bluetooth/%{name}-%{version}.tar.gz
 # Source0-md5:	60dfef22c0cc075ac1e3d84c249b8ca3
 Patch0:		%{name}-python.patch
+Patch1:		%{name}-gnomeui.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -23,7 +20,7 @@ BuildRequires:	libtool
 BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
 Requires:	bluez-utils
-Requires:	python-%{name} >= %{version}-%{release}
+Requires:	python-gnome-ui >= 2.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -78,21 +75,10 @@ Static GNOME bluetooth library.
 %description static -l pl
 Statyczna biblioteka GNOME bluetooth.
 
-%package -n python-%{name}
-Summary:	Python support for GNOME bluetooth subsystem
-Summary(pl):	Obs³uga Pythona dla podsystemu GNOME bluetooth
-Group:		Libraries/Python
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-%pyrequires_eq	python-libs
-
-%description -n python-%{name}
-Python support for GNOME bluetooth subsystem.
-
-%description -n python-%{name} -l pl
-Obs³uga Pythona dla podsystemu GNOME bluetooth.
-
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 rm -f missing
@@ -102,7 +88,7 @@ glib-gettextize --copy --force
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure --enable-static
 %{__make}
 
 %install
@@ -114,10 +100,14 @@ rm -rf $RPM_BUILD_ROOT
 %{py_comp} $RPM_BUILD_ROOT%{py_sitedir}
 %{py_ocomp} $RPM_BUILD_ROOT%{py_sitedir}
 
+sed -i 's/manager.py$/manager.pyo/' $RPM_BUILD_ROOT%{_bindir}/gnome-bluetooth-manager
+
+%find_lang %{name} --with-gnome
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
@@ -127,6 +117,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_desktopdir}/*
 
+%dir %{py_sitedir}/gnomebt/
+%attr(755,root,root) %{py_sitedir}/gnomebt/*.so
+%{py_sitedir}/gnomebt/*.pyc
+%{py_sitedir}/gnomebt/*.pyo
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
@@ -135,11 +130,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-#%{_libdir}/*.a
-
-%files -n python-%{name}
-%defattr(644,root,root,755)
-%dir %{py_sitedir}/gnomebt/
-%attr(755,root,root) %{py_sitedir}/gnomebt/*.so
-%{py_sitedir}/gnomebt/*.pyc
-%{py_sitedir}/gnomebt/*.pyo
+%{_libdir}/*.a

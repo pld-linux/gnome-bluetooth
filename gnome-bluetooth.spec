@@ -1,17 +1,18 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.4.1
+Version:	0.5
 Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://usefulinc.com/software/gnome-bluetooth/releases/%{name}-%{version}.tar.gz
-# Source0-md5:	59d83693ee5e10fed0aa7c941b0423d9
+# Source0-md5:	9407bbc1c193ab9a997710ede616827b
+Patch0:		%{name}-python.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gob2 >= 2.0.6
-BuildRequires:	libbtctl-devel >= 0.3
+BuildRequires:	libbtctl-devel >= 0.4
 BuildRequires:	libgnomeui-devel
 BuildRequires:	libtool
 BuildRequires:	nautilus-devel
@@ -49,6 +50,7 @@ docelowe.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing
@@ -73,12 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%{_sysconfdir}/gnome-vfs-2.0/modules/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/gnome-bluetooth-control
-%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libbluetooth.so
-%{_libdir}/gnome-vfs-2.0/modules/libbluetooth.la
 %{_libdir}/bonobo/servers/*
 %{_datadir}/%{name}
-%{_datadir}/idl/*
 %{_desktopdir}/*

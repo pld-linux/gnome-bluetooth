@@ -1,0 +1,14 @@
+diff -Nur gnome-bluetooth-0.5.1.orig/src/fileactiondialog.gob gnome-bluetooth-0.5.1/src/fileactiondialog.gob
+--- gnome-bluetooth-0.5.1.orig/src/fileactiondialog.gob	2004-06-12 21:01:56.000000000 +0200
++++ gnome-bluetooth-0.5.1/src/fileactiondialog.gob	2004-09-08 22:20:46.266634304 +0200
+@@ -32,6 +32,10 @@
+ #include <libgnomevfs/gnome-vfs-utils.h>
+ #include <gnome.h>
+ 
++#ifndef GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES
++#define GNOME_ICON_LOOKUP_FLAGS_ALLOW_SVG_AS_THEMSELVES 1<<2
++#endif
++
+ #define GNOMEBT_FILEACTION_SAVE 0x01
+ #define GNOMEBT_FILEACTION_OPEN 0x02
+ #define GNOMEBT_FILEACTION_DELETE 0x03

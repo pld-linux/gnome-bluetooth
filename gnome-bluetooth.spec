@@ -81,6 +81,8 @@ Statyczna biblioteka GNOME bluetooth.
 %patch0 -p1
 %patch1 -p1
 
+sed -i -e "s#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g" python/Makefile.am
+
 %build
 glib-gettextize --copy --force
 %{__libtoolize}

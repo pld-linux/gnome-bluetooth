@@ -1,8 +1,9 @@
 #
 # todo:
-# - add python subpackage
 # - fix static and devel subpackages
+# - review dependencies (gnome python packages? pygtk?)
 #
+%include	/usr/lib/rpm/macros.python
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
@@ -23,6 +24,7 @@ BuildRequires:	libtool
 BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
 Requires:	bluez-utils
+Requires:	python-%{name} >= %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -77,6 +79,16 @@ Static gnome bluetooth library.
 %description static -l pl
 Statyczna biblioteka gnome bluetooth.
 
+%package -n python-%{name}
+Summary:	Python support for gnome bluetooth subsystem
+Group:		Libraries/Python
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+%pyrequires_eq	python-libs
+Obsoletes:	libxml2-python
+
+%description -n python-%{name}
+Python support for gnome bluetooth subsystem.
+
 %prep
 %setup -q
 
@@ -96,6 +108,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{py_comp} $RPM_BUILD_ROOT%{py_sitedir}
+%{py_ocomp} $RPM_BUILD_ROOT%{py_sitedir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -119,3 +134,10 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 #%{_libdir}/*.a
+
+%files -n python-%{name}
+%defattr(644,root,root,755)
+%dir %{py_sitedir}/gnomebt/
+%attr(755,root,root) %{py_sitedir}/gnomebt/*.so
+%{py_sitedir}/gnomebt/*.pyc
+%{py_sitedir}/gnomebt/*.pyo

@@ -55,19 +55,27 @@ docelowe.
 
 %package devel
 Summary:	Header files for gnome bluetooth subsystem
+Summary(pl):	Pliki nag³ówkowe dla podsystemu gnome bluetooth
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for gnome bluetooth subsystem.
 
+%description devel -l pl
+Pliki nag³ówkowe dla podsystemu gnome bluetooth.
+
 %package static
 Summary:	Static gnome bluetooth library
+Summary(pl):	Statyczna biblioteka gnome bluetooth
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static gnome bluetooth library.
+
+%description static -l pl
+Statyczna biblioteka gnome bluetooth.
 
 %prep
 %setup -q

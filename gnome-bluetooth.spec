@@ -1,4 +1,3 @@
-
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
@@ -21,6 +20,8 @@ BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
 Requires:	bluez-utils
 Requires:	python-gnome-ui >= 2.0.0
+%pyrequires_eq	python-libs
+Obsoletes:	python-gnome-bluetooth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -81,14 +82,14 @@ Statyczna biblioteka GNOME bluetooth.
 %patch1 -p1
 
 %build
-rm -f missing
 glib-gettextize --copy --force
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure --enable-static
+%configure \
+	--enable-static
 %{__make}
 
 %install
@@ -117,7 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/%{name}
 %{_desktopdir}/*
 
-%dir %{py_sitedir}/gnomebt/
+%dir %{py_sitedir}/gnomebt
 %attr(755,root,root) %{py_sitedir}/gnomebt/*.so
 %{py_sitedir}/gnomebt/*.pyc
 %{py_sitedir}/gnomebt/*.pyo

@@ -3,7 +3,6 @@
 # - fix static and devel subpackages
 # - review dependencies (gnome python packages? pygtk?)
 #
-%include	/usr/lib/rpm/macros.python
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth

@@ -23,6 +23,7 @@ GNOME Bluetooth Subsystem.
 %build
 rm -f missing
 glib-gettextize --copy --force
+%{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
@@ -47,7 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/gnome-vfs-2.0/modules/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/gnome-bluetooth-control
-%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libbluetooth
+%attr(755,root,root) %{_libdir}/gnome-vfs-2.0/modules/libbluetooth.so
 %{_libdir}/gnome-vfs-2.0/modules/libbluetooth.la
 %{_libdir}/bonobo/servers/*
 %{_datadir}/%{name}

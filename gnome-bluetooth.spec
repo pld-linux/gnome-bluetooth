@@ -81,13 +81,16 @@ Statyczna biblioteka gnome bluetooth.
 
 %package -n python-%{name}
 Summary:	Python support for gnome bluetooth subsystem
+Summary(pl):	Obs³uga Pythona dla podsystemu gnome bluetooth
 Group:		Libraries/Python
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %pyrequires_eq	python-libs
-Obsoletes:	libxml2-python
 
 %description -n python-%{name}
 Python support for gnome bluetooth subsystem.
+
+%description -n python-%{name} -l pl
+Obs³uga Pythona dla podsystemu gnome bluetooth.
 
 %prep
 %setup -q

@@ -55,41 +55,41 @@ wpisaæ bluetooth:/// w Nautilusie i przeci±gn±æ plik na urz±dzenie
 docelowe.
 
 %package devel
-Summary:	Header files for gnome bluetooth subsystem
-Summary(pl):	Pliki nag³ówkowe dla podsystemu gnome bluetooth
+Summary:	Header files for GNOME bluetooth subsystem
+Summary(pl):	Pliki nag³ówkowe dla podsystemu GNOME bluetooth
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-Header files for gnome bluetooth subsystem.
+Header files for GNOME bluetooth subsystem.
 
 %description devel -l pl
-Pliki nag³ówkowe dla podsystemu gnome bluetooth.
+Pliki nag³ówkowe dla podsystemu GNOME bluetooth.
 
 %package static
-Summary:	Static gnome bluetooth library
-Summary(pl):	Statyczna biblioteka gnome bluetooth
+Summary:	Static GNOME bluetooth library
+Summary(pl):	Statyczna biblioteka GNOME bluetooth
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static gnome bluetooth library.
+Static GNOME bluetooth library.
 
 %description static -l pl
-Statyczna biblioteka gnome bluetooth.
+Statyczna biblioteka GNOME bluetooth.
 
 %package -n python-%{name}
-Summary:	Python support for gnome bluetooth subsystem
-Summary(pl):	Obs³uga Pythona dla podsystemu gnome bluetooth
+Summary:	Python support for GNOME bluetooth subsystem
+Summary(pl):	Obs³uga Pythona dla podsystemu GNOME bluetooth
 Group:		Libraries/Python
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 %pyrequires_eq	python-libs
 
 %description -n python-%{name}
-Python support for gnome bluetooth subsystem.
+Python support for GNOME bluetooth subsystem.
 
 %description -n python-%{name} -l pl
-Obs³uga Pythona dla podsystemu gnome bluetooth.
+Obs³uga Pythona dla podsystemu GNOME bluetooth.
 
 %prep
 %setup -q

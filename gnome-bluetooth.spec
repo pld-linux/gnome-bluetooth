@@ -18,6 +18,7 @@ BuildRequires:	libgnomeui-devel
 BuildRequires:	libtool
 BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
+BuildRequires:	sed >= 4.0
 Requires:	bluez-utils
 Requires:	python-gnome-ui >= 2.0.0
 %pyrequires_eq	python-libs

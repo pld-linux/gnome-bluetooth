@@ -24,6 +24,7 @@ BuildRequires:	openobex-devel
 BuildRequires:	python-btctl
 BuildRequires:	sed >= 4.0
 Requires:	bluez-utils
+Requires:	python-pygtk-glade
 Requires:	python-gnome-ui >= 2.0.0
 %pyrequires_eq	python-libs
 Obsoletes:	python-gnome-bluetooth

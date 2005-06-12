@@ -113,6 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 
 sed -i 's/manager.py$/manager.pyo/' $RPM_BUILD_ROOT%{_bindir}/gnome-bluetooth-manager
 rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/lib*.{a,la}
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
 
 %find_lang %{name} --with-gnome
 
@@ -137,6 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
+%{_libdir}/*.la
 %{_includedir}/*
 %{_pkgconfigdir}/*
 

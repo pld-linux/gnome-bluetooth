@@ -1,22 +1,21 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.5.1
-Release:	6
+Version:	0.6.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://downloads.usefulinc.com/gnome-bluetooth/%{name}-%{version}.tar.gz
-# Source0-md5:	60dfef22c0cc075ac1e3d84c249b8ca3
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.6/%{name}-%{version}.tar.gz
+# Source0-md5:	19f55205ec977f22946088cfd3c4c7b4
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
 Patch3:		%{name}-cleanup.patch
-Patch4:		%{name}-pygtk.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gob2 >= 2.0.8
-BuildRequires:	libbtctl-devel >= 0.4
+BuildRequires:	libbtctl-devel >= 0.5
 BuildRequires:	libgnomeui-devel
 BuildRequires:	libtool
 BuildRequires:	nautilus-devel
@@ -89,7 +88,6 @@ Statyczna biblioteka GNOME bluetooth.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p0
-%patch4 -p1
 
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 
@@ -119,6 +117,12 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
 
 %find_lang %{name} --with-gnome
 
+%post
+%gconf_schema_install gnome-obex-server.schemas
+
+%preun
+%gconf_schema_uninstall gnome-obex-server.schemas
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -127,10 +131,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/*.so.*
-%attr(755,root,root) %{_libdir}/bonobo/*.so
-%{_libdir}/bonobo/servers/*
 %{_datadir}/%{name}
 %{_desktopdir}/*
+%{_sysconfdir}/gconf/schemas/gnome-obex-server.schemas
 
 %dir %{py_sitedir}/gnomebt
 %attr(755,root,root) %{py_sitedir}/gnomebt/*.so

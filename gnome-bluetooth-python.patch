@@ -1,16 +1,15 @@
-diff -Nur gnome-bluetooth-0.5.orig/src/Makefile.am gnome-bluetooth-0.5/src/Makefile.am
---- gnome-bluetooth-0.5.orig/src/Makefile.am	2004-06-04 20:05:29.000000000 +0200
-+++ gnome-bluetooth-0.5/src/Makefile.am	2004-06-12 03:39:13.000000000 +0200
-@@ -85,10 +85,10 @@
- regenerate-defs: gnomebt-controller.defs gnomebt-chooser.defs
+--- gnome-bluetooth-0.6.0/src/Makefile.am.wiget	2005-08-16 20:35:12.000000000 +0000
++++ gnome-bluetooth-0.6.0/src/Makefile.am	2005-08-21 10:02:05.000000000 +0000
+@@ -100,10 +100,10 @@
+ CLEANFILES = $(PYTHON_CLEANFILES)
  
  gnomebt-controller.defs: gnomebt-controller.h
--	python /usr/share/pygtk/2.0/codegen/h2def.py -v gnomebt-controller.h > gnomebt-controller.defs
-+	python /usr/share/pygtk/2.0/codegen/h2def.pyc -v gnomebt-controller.h > gnomebt-controller.defs
+-	python $(CODEGENDIR)/h2def.py -v gnomebt-controller.h > gnomebt-controller.defs
++	python $(CODEGENDIR)/h2def.pyc -v gnomebt-controller.h > gnomebt-controller.defs
  
  gnomebt-chooser.defs: gnomebt-chooser.h
--	python /usr/share/pygtk/2.0/codegen/h2def.py -v gnomebt-chooser.h > gnomebt-chooser.defs
-+	python /usr/share/pygtk/2.0/codegen/h2def.pyc -v gnomebt-chooser.h > gnomebt-chooser.defs
+-	python $(CODEGENDIR)/h2def.py -v gnomebt-chooser.h > gnomebt-chooser.defs
++	python $(CODEGENDIR)/h2def.pyc -v gnomebt-chooser.h > gnomebt-chooser.defs
  
  gnomebt-controller-py.c: gnomebt-controller.defs gnomebt-controller.override
  	pygtk-codegen-2.0 --prefix controller \

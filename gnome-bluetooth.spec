@@ -100,6 +100,13 @@ sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 %{__autoheader}
 %{__automake}
 %{__autoconf}
+cd libegg
+%{__libtoolize}
+%{__aclocal}
+%{__autoheader}
+%{__automake}
+%{__autoconf}
+cd ..
 %configure \
 	--enable-static
 %{__make}

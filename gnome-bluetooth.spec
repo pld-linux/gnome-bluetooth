@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.6/%{name}-%{version}.tar.gz
@@ -94,12 +94,12 @@ Statyczna biblioteka GNOME bluetooth.
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 
 %build
-glib-gettextize --copy --force
+%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
-%{__autoconf}
 %{__autoheader}
 %{__automake}
+%{__autoconf}
 %configure \
 	--enable-static
 %{__make}

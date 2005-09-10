@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.6.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.6/%{name}-%{version}.tar.gz
@@ -22,6 +22,7 @@ BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
 BuildRequires:	python-btctl
 BuildRequires:	sed >= 4.0
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-utils
 Requires:	python-gnome-bonobo-ui
 Requires:	python-gnome-canvas
@@ -60,11 +61,22 @@ pozwala wysy³aæ pliki. Jest u¿ywany przez modu³ gnome-vfs - wystarczy
 wpisaæ bluetooth:/// w Nautilusie i przeci±gn±æ plik na urz±dzenie
 docelowe.
 
+%package libs
+Summary:	GNOME bluetooth subsystem shared libraries
+Summary(pl):	Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth
+Group:		Development/Libraries
+
+%description libs
+GNOME bluetooth subsystem shared libraries.
+
+%description libs -l pl
+Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth.
+
 %package devel
 Summary:	Header files for GNOME bluetooth subsystem
 Summary(pl):	Pliki nag³ówkowe dla podsystemu GNOME bluetooth
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Header files for GNOME bluetooth subsystem.
@@ -132,6 +144,9 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
 %preun
 %gconf_schema_uninstall gnome-obex-server.schemas
 
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -139,7 +154,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/*.so.*
 %{_datadir}/%{name}
 %{_desktopdir}/*
 %{_sysconfdir}/gconf/schemas/gnome-obex-server.schemas
@@ -148,6 +162,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/gnomebt/*.so
 %{py_sitedir}/gnomebt/*.pyc
 %{py_sitedir}/gnomebt/*.pyo
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.so.*
 
 %files devel
 %defattr(644,root,root,755)

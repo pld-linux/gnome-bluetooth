@@ -138,6 +138,9 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
 
 %find_lang %{name} --with-gnome
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 %gconf_schema_install gnome-obex-server.schemas
 
@@ -146,9 +149,6 @@ rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -165,7 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so.*
+%attr(755,root,root) %{_libdir}/*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)

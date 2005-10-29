@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.6.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.6/%{name}-%{version}.tar.gz
@@ -135,6 +135,9 @@ rm -rf $RPM_BUILD_ROOT
 sed -i 's/manager.py$/manager.pyo/' $RPM_BUILD_ROOT%{_bindir}/gnome-bluetooth-manager
 rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/lib*.{a,la}
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
+
+# duplicated with nb
+rm -f $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome
 

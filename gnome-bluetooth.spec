@@ -137,7 +137,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/lib*.{a,la}
 rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
 
 # duplicated with nb
-rm -f $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang %{name} --with-gnome
 

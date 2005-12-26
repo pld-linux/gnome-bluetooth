@@ -1,22 +1,22 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.6.0
-Release:	4
+Version:	0.7.0
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.6/%{name}-%{version}.tar.gz
-# Source0-md5:	19f55205ec977f22946088cfd3c4c7b4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{version}.tar.gz
+# Source0-md5:	f24acd21d98038a12c9e61cb6987cac1
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
-Patch3:		%{name}-cleanup.patch
+#Patch3:		%{name}-cleanup.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gob2 >= 2.0.8
-BuildRequires:	libbtctl-devel >= 0.5
-BuildRequires:	libgnomeui-devel
+BuildRequires:	libbtctl-devel >= 0.6
+BuildRequires:	libgnomeui-devel >= 1.110.0
 BuildRequires:	libtool
 BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
@@ -101,7 +101,7 @@ Statyczna biblioteka GNOME bluetooth.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p0
+#%patch3 -p0
 
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 

@@ -159,7 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 %{_desktopdir}/*
-%{_datadir}/pixmaps/*.png
+%{_pixmapsdir}/*.png
 %{_sysconfdir}/gconf/schemas/gnome-obex-server.schemas
 
 %dir %{py_sitedir}/gnomebt

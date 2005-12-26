@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.7.0
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{version}.tar.gz
@@ -159,6 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 %{_desktopdir}/*
+%{_datadir}/pixmaps/*.png
 %{_sysconfdir}/gconf/schemas/gnome-obex-server.schemas
 
 %dir %{py_sitedir}/gnomebt

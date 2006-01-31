@@ -10,7 +10,6 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{ve
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
-#Patch3:		%{name}-cleanup.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -101,7 +100,6 @@ Statyczna biblioteka GNOME bluetooth.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-#%patch3 -p0
 
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 

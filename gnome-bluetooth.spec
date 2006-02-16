@@ -17,7 +17,6 @@ BuildRequires:	gob2 >= 2.0.8
 BuildRequires:	libbtctl-devel >= 0.6
 BuildRequires:	libgnomeui-devel >= 1.110.0
 BuildRequires:	libtool
-BuildRequires:	nautilus-devel
 BuildRequires:	openobex-devel
 BuildRequires:	python-btctl
 BuildRequires:	sed >= 4.0

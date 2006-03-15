@@ -6,7 +6,7 @@ Release:	0.3
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{version}.tar.gz
-# Source0-md5:
+# Source0-md5: f24acd21d98038a12c9e61cb6987cac1
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch

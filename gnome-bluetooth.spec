@@ -17,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gob2 >= 2.0.8
 BuildRequires:	libbtctl-devel >= 0.6
-BuildRequires:	libgnomeui-devel >= 1.110.0
+BuildRequires:	libgnomeui-devel >= 2.14.0
 BuildRequires:	libtool
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	openobex-devel

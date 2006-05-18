@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.7.0
-Release:	0.4
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{version}.tar.gz
@@ -66,6 +66,7 @@ docelowe.
 Summary:	GNOME bluetooth subsystem shared libraries
 Summary(pl):	Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth
 Group:		Development/Libraries
+Requires:	libgnomeui >= 2.14.0
 
 %description libs
 GNOME bluetooth subsystem shared libraries.

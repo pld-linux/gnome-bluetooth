@@ -25,6 +25,7 @@ BuildRequires:	python-btctl
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-utils
+Requires:	python-btctl
 Requires:	python-gnome-bonobo-ui
 Requires:	python-gnome-canvas
 Requires:	python-gnome-ui >= 2.0.0
@@ -105,7 +106,6 @@ Statyczna biblioteka GNOME bluetooth.
 %patch2 -p1
 %patch3 -p1
 #%patch4 -p1
-
 
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 

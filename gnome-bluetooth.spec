@@ -1,4 +1,3 @@
-# TODO: fix libgnomebt.so linking (-lgtk-x11-2.0 -lgnomevfs-2 -lgconf-2 -lgnomeui-2 -lbtctl)
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
@@ -12,6 +11,7 @@ Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
 Patch3:		%{name}-manager_py.patch
+Patch4:		%{name}-link.patch
 #Patch4:		%{name}-obex.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
@@ -109,7 +109,7 @@ Statyczna biblioteka GNOME bluetooth.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-#%patch4 -p1
+%patch4 -p1
 
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 

@@ -1,0 +1,18 @@
+--- gnome-bluetooth-0.7.0/src/Makefile.am.orig	2006-06-05 14:01:14.464440000 +0200
++++ gnome-bluetooth-0.7.0/src/Makefile.am	2006-06-05 14:04:48.684440000 +0200
+@@ -1,7 +1,6 @@
+ ## Process this file with automake to produce Makefile.in
+ 
+ AM_CPPFLAGS = \
+-	-g \
+ 	-I$(top_srcdir)/intl \
+ 	$(GNOME_BLUETOOTH_CFLAGS) \
+ 	$(BLUETOOTH_CFLAGS) \
+@@ -33,6 +32,7 @@
+ 
+ libgnomebt_la_LDFLAGS = \
+ 	-version-info $(GNOMEBT_LT_VERSION)
++libgnomebt_la_LIBADD = $(GNOME_BLUETOOTH_LIBS)
+ 
+ gnomebt_chooser_test_SOURCES = \
+ 	gnomebt-chooser-test.c

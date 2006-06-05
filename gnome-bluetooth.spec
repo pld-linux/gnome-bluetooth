@@ -1,3 +1,4 @@
+# TODO: fix libgnomebt.so linking (-lgtk-x11-2.0 -lgnomevfs-2 -lgconf-2 -lgnomeui-2 -lbtctl)
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
@@ -25,6 +26,7 @@ BuildRequires:	python-btctl
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-utils
+Requires:	python-btctl
 Requires:	python-gnome-bonobo-ui
 Requires:	python-gnome-canvas
 Requires:	python-gnome-ui >= 2.0.0
@@ -66,6 +68,8 @@ docelowe.
 Summary:	GNOME bluetooth subsystem shared libraries
 Summary(pl):	Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth
 Group:		Development/Libraries
+Requires:	libbtctl >= 0.6
+Requires:	libgnomeui >= 2.14.0
 
 %description libs
 GNOME bluetooth subsystem shared libraries.
@@ -78,6 +82,8 @@ Summary:	Header files for GNOME bluetooth subsystem
 Summary(pl):	Pliki nag³ówkowe dla podsystemu GNOME bluetooth
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
+Requires:	libbtctl-devel >= 0.6
+Requires:	libgnomeui-devel >= 2.14.0
 
 %description devel
 Header files for GNOME bluetooth subsystem.
@@ -104,7 +110,6 @@ Statyczna biblioteka GNOME bluetooth.
 %patch2 -p1
 %patch3 -p1
 #%patch4 -p1
-
 
 sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 

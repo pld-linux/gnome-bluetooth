@@ -12,7 +12,6 @@ Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
 Patch3:		%{name}-manager_py.patch
 Patch4:		%{name}-link.patch
-#Patch4:		%{name}-obex.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
 BuildRequires:	autoconf
 BuildRequires:	automake

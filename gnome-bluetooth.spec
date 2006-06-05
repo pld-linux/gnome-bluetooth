@@ -66,6 +66,7 @@ docelowe.
 %package libs
 Summary:	GNOME bluetooth subsystem shared libraries
 Summary(pl):	Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth
+License:	LGPL
 Group:		Development/Libraries
 Requires:	libbtctl >= 0.6
 Requires:	libgnomeui >= 2.14.0
@@ -79,6 +80,7 @@ Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth.
 %package devel
 Summary:	Header files for GNOME bluetooth subsystem
 Summary(pl):	Pliki nag³ówkowe dla podsystemu GNOME bluetooth
+License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	libbtctl-devel >= 0.6
@@ -93,6 +95,7 @@ Pliki nag³ówkowe dla podsystemu GNOME bluetooth.
 %package static
 Summary:	Static GNOME bluetooth library
 Summary(pl):	Statyczna biblioteka GNOME bluetooth
+License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 

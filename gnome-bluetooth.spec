@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.7.0
-Release:	0.4
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{version}.tar.gz
@@ -17,20 +17,17 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gob2 >= 2.0.8
 BuildRequires:	libbtctl-devel >= 0.6
-BuildRequires:	libgnomeui-devel >= 2.14.0
+BuildRequires:	libgnomeui-devel >= 2.15.1
+BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
-BuildRequires:	librsvg-devel >= 2.0
-BuildRequires:	openobex-devel
-BuildRequires:	python-btctl
+BuildRequires:	openobex-devel >= 1.2
+BuildRequires:	python-btctl >= 0.6.0
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-utils
-Requires:	python-btctl
-Requires:	python-gnome-bonobo-ui
-Requires:	python-gnome-canvas
-Requires:	python-gnome-ui >= 2.0.0
-Requires:	python-gnome-vfs
-Requires:	python-pygtk-glade
+Requires:	python-btctl >= 0.6.0
+Requires:	python-gnome-ui >= 2.15.2
+Requires:	python-pygtk-glade >= 2.9.2
 %pyrequires_eq	python-libs
 Obsoletes:	python-gnome-bluetooth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,8 +65,8 @@ Summary:	GNOME bluetooth subsystem shared libraries
 Summary(pl):	Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
-Requires:	libbtctl >= 0.6
-Requires:	libgnomeui >= 2.14.0
+Requires:	libbtctl >= 0.6.0
+Requires:	libgnomeui >= 2.15.1
 
 %description libs
 GNOME bluetooth subsystem shared libraries.
@@ -83,8 +80,8 @@ Summary(pl):	Pliki nag³ówkowe dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libbtctl-devel >= 0.6
-Requires:	libgnomeui-devel >= 2.14.0
+Requires:	libbtctl-devel >= 0.6.0
+Requires:	libgnomeui-devel >= 2.15.1
 
 %description devel
 Header files for GNOME bluetooth subsystem.

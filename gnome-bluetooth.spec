@@ -20,6 +20,7 @@ BuildRequires:	libbtctl-devel >= 0.6
 BuildRequires:	libgnomeui-devel >= 2.15.1
 BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
+BuildRequires:	libusb-devel
 BuildRequires:	openobex-devel >= 1.2
 BuildRequires:	python-btctl >= 0.6.0
 BuildRequires:	sed >= 4.0

@@ -1,34 +1,35 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.7.0
-Release:	3
+Version:	0.8.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.7/%{name}-%{version}.tar.gz
-# Source0-md5: f24acd21d98038a12c9e61cb6987cac1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.8/%{name}-%{version}.tar.gz
+# Source0-md5:	ae573b6dbc795a0c00dd0810f3a23140
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
-Patch3:		%{name}-manager_py.patch
-Patch4:		%{name}-link.patch
+Patch3:		%{name}-link.patch
 URL:		http://usefulinc.com/software/gnome-bluetooth/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gob2 >= 2.0.8
-BuildRequires:	libbtctl-devel >= 0.6
-BuildRequires:	libgnomeui-devel >= 2.15.1
-BuildRequires:	librsvg-devel >= 1:2.15.0
+BuildRequires:	GConf2-devel >= 2.14.0
+BuildRequires:	autoconf >= 2.52
+BuildRequires:	automake >= 1.8
+BuildRequires:	gob2 >= 2.0.14
+BuildRequires:	intltool >= 0.18
+BuildRequires:	libbtctl-devel >= 0.8.0
+BuildRequires:	libgnomeui-devel >= 2.16.0
+BuildRequires:	librsvg-devel >= 1:2.16.0
 BuildRequires:	libtool
-BuildRequires:	libusb-devel
 BuildRequires:	openobex-devel >= 1.2
-BuildRequires:	python-btctl >= 0.6.0
+BuildRequires:	pkgconfig
+BuildRequires:	python-btctl >= 0.8.0
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-utils
-Requires:	python-btctl >= 0.6.0
-Requires:	python-gnome-ui >= 2.15.2
-Requires:	python-pygtk-glade >= 2.9.2
+Requires:	python-btctl >= 0.8.0
+Requires:	python-gnome-ui >= 2.16.0
+Requires:	python-pygtk-glade >= 2.10.1
 %pyrequires_eq	python-libs
 Obsoletes:	python-gnome-bluetooth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -66,8 +67,8 @@ Summary:	GNOME bluetooth subsystem shared libraries
 Summary(pl):	Wspó³dzielone biblioteki dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
-Requires:	libbtctl >= 0.6.0
-Requires:	libgnomeui >= 2.15.1
+Requires:	libbtctl >= 0.8.0
+Requires:	libgnomeui >= 2.16.0
 
 %description libs
 GNOME bluetooth subsystem shared libraries.
@@ -81,8 +82,8 @@ Summary(pl):	Pliki nag³ówkowe dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libbtctl-devel >= 0.6.0
-Requires:	libgnomeui-devel >= 2.15.1
+Requires:	libbtctl-devel >= 0.8.0
+Requires:	libgnomeui-devel >= 2.16.0
 
 %description devel
 Header files for GNOME bluetooth subsystem.
@@ -109,9 +110,6 @@ Statyczna biblioteka GNOME bluetooth.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-
-sed -i -e 's#$(PYTHON_PREFIX)/lib#$(PYTHON_PREFIX)/%{_lib}#g' python/Makefile.am
 
 %build
 %{__glib_gettextize}
@@ -137,12 +135,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{py_comp} $RPM_BUILD_ROOT%{py_sitedir}
-%{py_ocomp} $RPM_BUILD_ROOT%{py_sitedir}
-
-sed -i 's/manager.py$/manager.pyo/' $RPM_BUILD_ROOT%{_bindir}/gnome-bluetooth-manager
 rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/lib*.{a,la}
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la,py}
+rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la}
 
 # duplicated with nb
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/no
@@ -172,8 +166,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{py_sitedir}/gnomebt
 %attr(755,root,root) %{py_sitedir}/gnomebt/*.so
-%{py_sitedir}/gnomebt/*.pyc
-%{py_sitedir}/gnomebt/*.pyo
 
 %files libs
 %defattr(644,root,root,755)

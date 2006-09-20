@@ -12,17 +12,3 @@
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=gnome-bluetooth
  X-GNOME-Bugzilla-Component=obex-server
---- gnome-bluetooth-0.5.1/python/gnome-bluetooth-manager.desktop.in~	2005-05-23 15:07:40.000000000 +0200
-+++ gnome-bluetooth-0.5.1/python/gnome-bluetooth-manager.desktop.in	2005-05-23 15:07:40.000000000 +0200
-@@ -4,9 +4,9 @@
- _Comment=Display Bluetooth devices and their properties
- Icon=../gnome-bluetooth/pixmaps/blueradio-48.png
- Exec=gnome-bluetooth-manager
--Terminal=0
-+Terminal=false
- Type=Application
--Categories=Application;System;
-+Categories=System;
- X-GNOME-Bugzilla-Bugzilla=GNOME
- X-GNOME-Bugzilla-Product=gnome-bluetooth
- X-GNOME-Bugzilla-Component=admin-tools

@@ -8,11 +8,3 @@
  	-I$(top_srcdir)/intl \
  	$(GNOME_BLUETOOTH_CFLAGS) \
  	$(BLUETOOTH_CFLAGS) \
-@@ -33,6 +32,7 @@
- 
- libgnomebt_la_LDFLAGS = \
- 	-version-info $(GNOMEBT_LT_VERSION)
-+libgnomebt_la_LIBADD = $(GNOME_BLUETOOTH_LIBS)
- 
- gnomebt_chooser_test_SOURCES = \
- 	gnomebt-chooser-test.c

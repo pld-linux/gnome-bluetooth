@@ -1,5 +1,5 @@
 Summary:	GNOME Bluetooth Subsystem
-Summary(pl):	Podsystem GNOME Bluetooth
+Summary(pl.UTF-8):   Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.8.0
 Release:	1
@@ -48,23 +48,23 @@ enables you to send files. It is used by the gnome-vfs module - go to
 bluetooth:/// in Nautilus and drag and drop a file onto a destination
 device.
 
-%description -l pl
+%description -l pl.UTF-8
 GNOME Bluetooth Subsystem (podsystem GNOME Bluetooth) jest tworzony
-przez Edda Dumbilla jako prototyp z zamiarem w≥±czenia do projektu
+przez Edda Dumbilla jako prototyp z zamiarem w≈ÇƒÖczenia do projektu
 GNOME. Na razie jest we wczesnym stadium rozwoju.
 
-Ten pakiet zawiera serwer Bonobo do sterowania urz±dzeniami Bluetooth
-oraz proste GUI do przegl±dania dostÍpnych urz±dzeÒ
-(gnome-bluetooth-admin). DostÍpny jest serwer OBEX
-(gnome-obex-server), pozwalaj±cy ∂ci±gaÊ pliki wys≥ane przez Bluetooth
-do PC i zapisywaÊ je w katalogu domowym. Program gnome-obex-send
-pozwala wysy≥aÊ pliki. Jest uøywany przez modu≥ gnome-vfs - wystarczy
-wpisaÊ bluetooth:/// w Nautilusie i przeci±gn±Ê plik na urz±dzenie
+Ten pakiet zawiera serwer Bonobo do sterowania urzƒÖdzeniami Bluetooth
+oraz proste GUI do przeglƒÖdania dostƒôpnych urzƒÖdze≈Ñ
+(gnome-bluetooth-admin). Dostƒôpny jest serwer OBEX
+(gnome-obex-server), pozwalajƒÖcy ≈õciƒÖgaƒá pliki wys≈Çane przez Bluetooth
+do PC i zapisywaƒá je w katalogu domowym. Program gnome-obex-send
+pozwala wysy≈Çaƒá pliki. Jest u≈ºywany przez modu≈Ç gnome-vfs - wystarczy
+wpisaƒá bluetooth:/// w Nautilusie i przeciƒÖgnƒÖƒá plik na urzƒÖdzenie
 docelowe.
 
 %package libs
 Summary:	GNOME bluetooth subsystem shared libraries
-Summary(pl):	WspÛ≥dzielone biblioteki dla podsystemu GNOME bluetooth
+Summary(pl.UTF-8):   Wsp√≥≈Çdzielone biblioteki dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	libbtctl >= 0.8.0
@@ -73,12 +73,12 @@ Requires:	libgnomeui >= 2.16.0
 %description libs
 GNOME bluetooth subsystem shared libraries.
 
-%description libs -l pl
-WspÛ≥dzielone biblioteki dla podsystemu GNOME bluetooth.
+%description libs -l pl.UTF-8
+Wsp√≥≈Çdzielone biblioteki dla podsystemu GNOME bluetooth.
 
 %package devel
 Summary:	Header files for GNOME bluetooth subsystem
-Summary(pl):	Pliki nag≥Ûwkowe dla podsystemu GNOME bluetooth
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
@@ -88,12 +88,12 @@ Requires:	libgnomeui-devel >= 2.16.0
 %description devel
 Header files for GNOME bluetooth subsystem.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe dla podsystemu GNOME bluetooth.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe dla podsystemu GNOME bluetooth.
 
 %package static
 Summary:	Static GNOME bluetooth library
-Summary(pl):	Statyczna biblioteka GNOME bluetooth
+Summary(pl.UTF-8):   Statyczna biblioteka GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
@@ -101,7 +101,7 @@ Requires:	%{name}-devel = %{version}-%{release}
 %description static
 Static GNOME bluetooth library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka GNOME bluetooth.
 
 %prep

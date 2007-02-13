@@ -1,5 +1,5 @@
 Summary:	GNOME Bluetooth Subsystem
-Summary(pl.UTF-8):   Podsystem GNOME Bluetooth
+Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	0.8.0
 Release:	1
@@ -64,7 +64,7 @@ docelowe.
 
 %package libs
 Summary:	GNOME bluetooth subsystem shared libraries
-Summary(pl.UTF-8):   Współdzielone biblioteki dla podsystemu GNOME bluetooth
+Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	libbtctl >= 0.8.0
@@ -78,7 +78,7 @@ Współdzielone biblioteki dla podsystemu GNOME bluetooth.
 
 %package devel
 Summary:	Header files for GNOME bluetooth subsystem
-Summary(pl.UTF-8):   Pliki nagłówkowe dla podsystemu GNOME bluetooth
+Summary(pl.UTF-8):	Pliki nagłówkowe dla podsystemu GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
@@ -93,7 +93,7 @@ Pliki nagłówkowe dla podsystemu GNOME bluetooth.
 
 %package static
 Summary:	Static GNOME bluetooth library
-Summary(pl.UTF-8):   Statyczna biblioteka GNOME bluetooth
+Summary(pl.UTF-8):	Statyczna biblioteka GNOME bluetooth
 License:	LGPL
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}

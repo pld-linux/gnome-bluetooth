@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.8.0
-Release:	2
+Version:	0.9.0
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.8/%{name}-%{version}.tar.gz
-# Source0-md5:	ae573b6dbc795a0c00dd0810f3a23140
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.9/%{name}-%{version}.tar.gz
+# Source0-md5:	a456f24c26f01970495e432f89fe4a40
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch
@@ -16,8 +16,9 @@ BuildRequires:	GConf2-devel >= 2.14.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1.8
 BuildRequires:	gob2 >= 2.0.14
+BuildRequires:	gtk+2-devel >= 2.10.0
 BuildRequires:	intltool >= 0.18
-BuildRequires:	libbtctl-devel >= 0.8.0
+BuildRequires:	libbtctl-devel >= 0.9.0
 BuildRequires:	libgnomeui-devel >= 2.16.0
 BuildRequires:	librsvg-devel >= 1:2.16.0
 BuildRequires:	libtool
@@ -112,21 +113,17 @@ Statyczna biblioteka GNOME bluetooth.
 %patch3 -p1
 
 %build
-%{__glib_gettextize}
+%{__intltoolize}
+#%%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
 %{__automake}
 %{__autoconf}
-cd libegg
-%{__libtoolize}
-%{__aclocal}
-%{__autoheader}
-%{__automake}
-%{__autoconf}
-cd ..
 %configure \
-	--enable-static
+	--enable-static \
+	--disable-schemas-install \
+	PYTHONDIR=%{py_sitedir}/gnomebt/
 %{__make}
 
 %install

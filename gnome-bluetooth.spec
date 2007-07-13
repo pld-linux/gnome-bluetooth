@@ -122,8 +122,7 @@ Statyczna biblioteka GNOME bluetooth.
 %{__autoconf}
 %configure \
 	--enable-static \
-	--disable-schemas-install \
-	PYTHONDIR=%{py_sitedir}/gnomebt/
+	--disable-schemas-install
 %{__make}
 
 %install

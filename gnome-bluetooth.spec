@@ -32,6 +32,7 @@ Requires:	python-btctl >= 0.8.0
 Requires:	python-gnome-ui >= 2.16.0
 Requires:	python-pygtk-glade >= 2.10.1
 %pyrequires_eq	python-libs
+Suggests:	gnome-vfs-obexftp
 Obsoletes:	python-gnome-bluetooth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

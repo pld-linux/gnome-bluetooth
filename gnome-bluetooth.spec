@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.9.1
+Version:	0.11.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.9/%{name}-%{version}.tar.gz
-# Source0-md5:	0ee44ee6e4e281be390423029a89ac26
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.11/%{name}-%{version}.tar.gz
+# Source0-md5:	fdfc2ad1204f08c49c0054ae39f2d42b
 Patch0:		%{name}-python.patch
 Patch1:		%{name}-gnomeui.patch
 Patch2:		%{name}-desktop.patch

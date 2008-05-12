@@ -25,7 +25,7 @@ BuildRequires:	libtool
 BuildRequires:	openobex-devel >= 1.2
 BuildRequires:	pkgconfig
 BuildRequires:	python-btctl >= 0.8.0
-BuildRequires:	python-pygtk-devel >= 2.0
+BuildRequires:	python-pygtk-devel >= 2:2.0
 BuildRequires:	sed >= 4.0
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez-utils

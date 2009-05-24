@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	2.27.2
+Version:	2.27.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.27/%{name}-%{version}.tar.bz2
-# Source0-md5:	cbcc67dcf2205dd187dc368952c7edd2
+# Source0-md5:	aed68677df14a79b047760595e942638
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.52
@@ -27,10 +27,13 @@ Requires(post,postun):	gtk+2
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
+Requires:	dbus-glib
+Requires:	gtk+2 >= 2:2.10.0
 Requires:	hicolor-icon-theme
-Requires:	obex-data-server
+Requires:	obex-data-server >= 0.3
 Obsoletes:	python-gnome-bluetooth
-Conflicts:	bluez-gnome
+Obsoletes:	bluez-gnome < 1.9
+Obsoletes:	bluez-pin
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -95,6 +98,8 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %prep
 %setup -q
+sed -i 's/mus//g' po/LINGUAS
+rm -f po/mus.po
 
 %build
 %{__gtkdocize}
@@ -119,9 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/mus
-
-%find_lang %{name}2
+%find_lang %{name} --with-gnome --with-omf --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -139,7 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
 
-%files -f %{name}2.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/bluetooth-applet

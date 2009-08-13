@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	2.27.7.1
+Version:	2.27.9
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.27/%{name}-%{version}.tar.bz2
-# Source0-md5:	4d95a0d2ebe4495fc4bd9af59e791f7e
+# Source0-md5:	a4111b2578346b951d5c3fb2457c0f18
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.52
@@ -23,6 +23,7 @@ BuildRequires:	libtool
 BuildRequires:	libunique-devel >= 1.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	udev-glib-devel >= 144-2
 Requires(post,postun):	gtk+2
 Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
@@ -111,9 +112,9 @@ rm -f po/mus.po
 %{__automake}
 %configure \
 	--enable-gtk-doc \
-	--enable-static \
 	--disable-desktop-update \
 	--disable-icon-update \
+	--disable-introspection \
 	--disable-schemas-install \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -166,7 +167,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-bluetooth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.6
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.7
 
 %files devel
 %defattr(644,root,root,755)
@@ -174,10 +175,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgnome-bluetooth.la
 %{_includedir}/gnome-bluetooth
 %{_pkgconfigdir}/gnome-bluetooth-1.0.pc
-
-%files static
-%defattr(644,root,root,755)
-%{_libdir}/libgnome-bluetooth.a
 
 %files apidocs
 %defattr(644,root,root,755)

@@ -1,130 +1,122 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	0.11.0
-Release:	9
-License:	GPL
+Version:	2.28.0
+Release:	1
+License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/0.11/%{name}-%{version}.tar.gz
-# Source0-md5:	fdfc2ad1204f08c49c0054ae39f2d42b
-Patch0:		%{name}-python.patch
-Patch1:		%{name}-gnomeui.patch
-Patch2:		%{name}-desktop.patch
-Patch3:		%{name}-link.patch
-URL:		http://usefulinc.com/software/gnome-bluetooth/
-BuildRequires:	GConf2-devel >= 2.14.0
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.28/%{name}-%{version}.tar.bz2
+# Source0-md5:	0d10dbdb53d302aa3e34e391ef6b142b
+URL:		http://live.gnome.org/GnomeBluetooth
+BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1.8
-BuildRequires:	gob2 >= 2.0.14
-BuildRequires:	gtk+2-devel >= 2.10.0
-BuildRequires:	intltool >= 0.18
-BuildRequires:	libbtctl-devel >= 0.9.0
-BuildRequires:	libgnomeui-devel >= 2.16.0
-BuildRequires:	librsvg-devel >= 1:2.16.0
+BuildRequires:	automake >= 1.9
+BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	gettext-devel
+BuildRequires:	gnome-common
+BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gtk-doc >= 1.9
+BuildRequires:	hal-devel >= 0.5.10
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libnotify-devel >= 0.4.3
 BuildRequires:	libtool
-BuildRequires:	openobex-devel >= 1.2
+BuildRequires:	libunique-devel >= 1.0.0
 BuildRequires:	pkgconfig
-BuildRequires:	python-btctl >= 0.8.0
-BuildRequires:	python-pygtk-devel >= 2:2.0
-BuildRequires:	sed >= 4.0
+BuildRequires:	rpmbuild(macros) >= 1.311
+BuildRequires:	udev-glib-devel >= 144-2
+Requires(post,postun):	gtk+2
+Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	bluez-utils
-Requires:	python-btctl >= 0.8.0
-Requires:	python-gnome-ui >= 2.16.0
-Requires:	python-pygtk-glade >= 2.10.1
-%pyrequires_eq	python-libs
-Suggests:	gnome-vfs-obexftp
+Requires:	bluez >= 4.22
+Requires:	dbus-glib
+Requires:	gtk+2 >= 2:2.10.0
+Requires:	hicolor-icon-theme
+Requires:	obex-data-server >= 0.3
 Obsoletes:	python-gnome-bluetooth
+Obsoletes:	bluez-gnome < 1.9
+Obsoletes:	bluez-pin
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-The GNOME Bluetooth Subsystem is being developed as a prototype by Edd
-Dumbill, with the intention of being submitted to the GNOME desktop
-project. The software is in its early stages right now.
-
-This package contains a Bonobo server to control Bluetooth devices,
-and a simple GUI to explore which devices are available
-(gnome-bluetooth-admin). An OBEX server is available,
-gnome-obex-server. This will receive files sent via Bluetooth to your
-PC, and save them in your home directory. The program gnome-obex-send
-enables you to send files. It is used by the gnome-vfs module - go to
-bluetooth:/// in Nautilus and drag and drop a file onto a destination
-device.
+GNOME Bluetooth provides tools for controlling and communicating with
+Bluetooth devices.
 
 %description -l pl.UTF-8
-GNOME Bluetooth Subsystem (podsystem GNOME Bluetooth) jest tworzony
-przez Edda Dumbilla jako prototyp z zamiarem włączenia do projektu
-GNOME. Na razie jest we wczesnym stadium rozwoju.
-
-Ten pakiet zawiera serwer Bonobo do sterowania urządzeniami Bluetooth
-oraz proste GUI do przeglądania dostępnych urządzeń
-(gnome-bluetooth-admin). Dostępny jest serwer OBEX
-(gnome-obex-server), pozwalający ściągać pliki wysłane przez Bluetooth
-do PC i zapisywać je w katalogu domowym. Program gnome-obex-send
-pozwala wysyłać pliki. Jest używany przez moduł gnome-vfs - wystarczy
-wpisać bluetooth:/// w Nautilusie i przeciągnąć plik na urządzenie
-docelowe.
+GNOME Bluetooth dostarcza narzędzia do kontrolowania i komunikowania
+się z urządzeniami Bluetooth.
 
 %package libs
-Summary:	GNOME bluetooth subsystem shared libraries
-Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME bluetooth
-License:	LGPL
-Group:		Development/Libraries
-Requires:	libbtctl >= 0.8.0
-Requires:	libgnomeui >= 2.16.0
+Summary:	GNOME Bluetooth subsystem shared libraries
+Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME Bluetooth
+License:	LGPL v2+
+Group:		X11/Libraries
 
 %description libs
-GNOME bluetooth subsystem shared libraries.
+GNOME Bluetooth subsystem shared libraries.
 
 %description libs -l pl.UTF-8
-Współdzielone biblioteki dla podsystemu GNOME bluetooth.
+Współdzielone biblioteki dla podsystemu GNOME Bluetooth.
 
 %package devel
-Summary:	Header files for GNOME bluetooth subsystem
-Summary(pl.UTF-8):	Pliki nagłówkowe dla podsystemu GNOME bluetooth
-License:	LGPL
-Group:		Development/Libraries
+Summary:	Header files for GNOME Bluetooth subsystem
+Summary(pl.UTF-8):	Pliki nagłówkowe dla podsystemu GNOME Bluetooth
+License:	LGPL v2+
+Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libbtctl-devel >= 0.8.0
-Requires:	libgnomeui-devel >= 2.16.0
+Requires:	dbus-glib-devel >= 0.74
+Requires:	gtk+2-devel >= 2:2.14.0
 
 %description devel
-Header files for GNOME bluetooth subsystem.
+Header files for GNOME Bluetooth subsystem.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe dla podsystemu GNOME bluetooth.
+Pliki nagłówkowe dla podsystemu GNOME Bluetooth.
 
 %package static
-Summary:	Static GNOME bluetooth library
-Summary(pl.UTF-8):	Statyczna biblioteka GNOME bluetooth
-License:	LGPL
-Group:		Development/Libraries
+Summary:	Static GNOME Bluetooth library
+Summary(pl.UTF-8):	Statyczna biblioteka GNOME Bluetooth
+License:	LGPL v2+
+Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
-Static GNOME bluetooth library.
+Static GNOME Bluetooth library.
 
 %description static -l pl.UTF-8
-Statyczna biblioteka GNOME bluetooth.
+Statyczna biblioteka GNOME Bluetooth.
+
+%package apidocs
+Summary:	GNOME Bluetooth library API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+GNOME Bluetooth library API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki GNOME Bluetooth.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
+sed -i 's/mus//g' po/LINGUAS
+rm -f po/mus.po
 
 %build
+%{__gtkdocize}
 %{__intltoolize}
-#%%{__glib_gettextize}
 %{__libtoolize}
 %{__aclocal}
+%{__autoconf}
 %{__autoheader}
 %{__automake}
-%{__autoconf}
 %configure \
-	--enable-static \
-	--disable-schemas-install
+	--enable-gtk-doc \
+	--disable-desktop-update \
+	--disable-icon-update \
+	--disable-introspection \
+	--disable-schemas-install \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -133,22 +125,20 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/bonobo/lib*.{a,la}
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/gnomebt/*.{a,la}
-
-# duplicated with nb
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/no
-
-%find_lang %{name} --with-gnome
+%find_lang %{name} --with-gnome --with-omf --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%gconf_schema_install gnome-obex-server.schemas
+%update_icon_cache hicolor
+%gconf_schema_install bluetooth-manager.schemas
 
 %preun
-%gconf_schema_uninstall gnome-obex-server.schemas
+%gconf_schema_uninstall bluetooth-manager.schemas
+
+%postun
+%update_icon_cache hicolor
 
 %post	libs -p /sbin/ldconfig
 %postun	libs -p /sbin/ldconfig
@@ -156,26 +146,36 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_bindir}/*
-%{_datadir}/%{name}
-%{_desktopdir}/*.desktop
-%{_pixmapsdir}/*.png
-%{_sysconfdir}/gconf/schemas/gnome-obex-server.schemas
-
-%dir %{py_sitedir}/gnomebt
-%attr(755,root,root) %{py_sitedir}/gnomebt/*.so
+%attr(755,root,root) %{_bindir}/bluetooth-applet
+%attr(755,root,root) %{_bindir}/bluetooth-properties
+%attr(755,root,root) %{_bindir}/bluetooth-sendto
+%attr(755,root,root) %{_bindir}/bluetooth-wizard
+%{_desktopdir}/bluetooth-properties.desktop
+%{_sysconfdir}/gconf/schemas/bluetooth-manager.schemas
+%{_sysconfdir}/xdg/autostart/bluetooth-applet.desktop
+%{_datadir}/gnome-bluetooth
+%dir %{_libdir}/gnome-bluetooth
+%dir %{_libdir}/gnome-bluetooth/plugins
+%attr(755,root,root) %{_libdir}/gnome-bluetooth/plugins/*.so
+%{_iconsdir}/hicolor/*/*/*.png
+%{_iconsdir}/hicolor/*/*/*.svg
+%{_mandir}/man1/bluetooth-applet.1*
+%{_mandir}/man1/bluetooth-properties.1*
+%{_mandir}/man1/bluetooth-sendto.1*
+%{_mandir}/man1/bluetooth-wizard.1*
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.7
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
-%{_includedir}/*
-%{_pkgconfigdir}/*
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth.so
+%{_libdir}/libgnome-bluetooth.la
+%{_includedir}/gnome-bluetooth
+%{_pkgconfigdir}/gnome-bluetooth-1.0.pc
 
-%files static
+%files apidocs
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_gtkdocdir}/gnome-bluetooth

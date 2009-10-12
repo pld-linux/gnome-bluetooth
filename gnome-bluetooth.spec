@@ -1,22 +1,22 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	2.28.0
+Version:	2.28.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.28/%{name}-%{version}.tar.bz2
-# Source0-md5:	0d10dbdb53d302aa3e34e391ef6b142b
+# Source0-md5:	a94d95bf4b3a0084bd6eb397bbe92b10
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1.9
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common
-BuildRequires:	gtk+2-devel >= 2:2.14.0
+BuildRequires:	gnome-doc-utils
+BuildRequires:	gtk+2-devel >= 2:2.16.0
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	hal-devel >= 0.5.10
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.4.3
 BuildRequires:	libtool
@@ -29,7 +29,7 @@ Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
 Requires:	dbus-glib
-Requires:	gtk+2 >= 2:2.10.0
+Requires:	gtk+2 >= 2:2.16.0
 Requires:	hicolor-icon-theme
 Requires:	obex-data-server >= 0.3
 Obsoletes:	python-gnome-bluetooth
@@ -64,7 +64,7 @@ License:	LGPL v2+
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	dbus-glib-devel >= 0.74
-Requires:	gtk+2-devel >= 2:2.14.0
+Requires:	gtk+2-devel >= 2:2.16.0
 
 %description devel
 Header files for GNOME Bluetooth subsystem.
@@ -124,6 +124,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la
 
 %find_lang %{name} --with-gnome --with-omf --all-name
 

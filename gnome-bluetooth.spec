@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	2.28.3
-Release:	2
+Version:	2.29.3
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.28/%{name}-%{version}.tar.bz2
-# Source0-md5:	1cadae3e520adb620df35c9cec2813d1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.29/%{name}-%{version}.tar.bz2
+# Source0-md5:	03cd99b9d781ad794472d3921a83c049
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.52
@@ -21,6 +21,7 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.4.3
 BuildRequires:	libtool
 BuildRequires:	libunique-devel >= 1.0.0
+BuildRequires:	nautilus-sendto-devel >= 2.28.0.1
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	udev-glib-devel >= 144-2
@@ -97,9 +98,24 @@ GNOME Bluetooth library API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki GNOME Bluetooth.
 
+%package -n nautilus-sendto-bluetooth
+Summary:	Bluetooth support for sending files in Nautilus
+Summary(pl.UTF-8):	Wsparcie dla bluetooth przy wysyłaniu plików z Nautilusa
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	nautilus-sendto >= 2.28.0.1
+
+%description -n nautilus-sendto-bluetooth
+Enables sending files from Nautilus over bluetooth.
+
+%description -n nautilus-sendto-bluetooth -l pl.UTF-8
+Pozwala na przesyłanie z Nautilusa plików przez bluetooth.
+
 %prep
 %setup -q
-sed -i 's/mus//g' po/LINGUAS
+sed -i 's/^en@shaw//g' po/LINGUAS
+sed -i 's/^mus//g' po/LINGUAS
+rm -f po/en@shaw.po
 rm -f po/mus.po
 
 %build
@@ -112,6 +128,7 @@ rm -f po/mus.po
 %{__automake}
 %configure \
 	--enable-gtk-doc \
+	--enable-nautilus-sendto \
 	--disable-desktop-update \
 	--disable-icon-update \
 	--disable-introspection \
@@ -181,3 +198,7 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gnome-bluetooth
+
+%files -n nautilus-sendto-bluetooth
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/nautilus-sendto/plugins/libnstbluetooth.so

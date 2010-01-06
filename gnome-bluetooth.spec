@@ -12,6 +12,7 @@ BuildRequires:	GConf2-devel >= 2.24.0
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils
@@ -32,9 +33,9 @@ Requires:	dbus-glib
 Requires:	gtk+2 >= 2:2.16.0
 Requires:	hicolor-icon-theme
 Requires:	obex-data-server >= 0.3
-Obsoletes:	python-gnome-bluetooth
 Obsoletes:	bluez-gnome < 1.9
 Obsoletes:	bluez-pin
+Obsoletes:	python-gnome-bluetooth
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

@@ -100,8 +100,9 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %prep
 %setup -q
+sed -i 's/en@shaw//g' po/LINGUAS
 sed -i 's/mus//g' po/LINGUAS
-rm -f po/mus.po
+rm -f po/{en@shaw,mus}.po
 
 %build
 %{__gtkdocize}

@@ -16,12 +16,14 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils
-BuildRequires:	gtk+2-devel >= 2:2.16.0
+BuildRequires:	gobject-introspection-devel >= 0.6.3
+BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.4.3
 BuildRequires:	libtool
 BuildRequires:	libunique-devel >= 1.0.0
+BuildRequires:	nautilus-sendto-devel >= 2.28.1
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	udev-glib-devel >= 144-2
@@ -30,7 +32,7 @@ Requires(post,preun):	GConf2
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
 Requires:	dbus-glib
-Requires:	gtk+2 >= 2:2.16.0
+Requires:	gtk+2 >= 2:2.20.0
 Requires:	hicolor-icon-theme
 Requires:	obex-data-server >= 0.3
 Obsoletes:	bluez-gnome < 1.9
@@ -65,7 +67,7 @@ License:	LGPL v2+
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	dbus-glib-devel >= 0.74
-Requires:	gtk+2-devel >= 2:2.16.0
+Requires:	gtk+2-devel >= 2:2.20.0
 
 %description devel
 Header files for GNOME Bluetooth subsystem.
@@ -98,6 +100,19 @@ GNOME Bluetooth library API documentation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API biblioteki GNOME Bluetooth.
 
+%package -n nautilus-sendto-gnome-bluetooth
+Summary:	nautilus-sendto GNOME Bluetooth plugin
+Summary(pl.UTF-8):	Wtyczka nautilus-sendto dla GNOME Bluetooth
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	nautilus-sendto >= 2.28.1
+
+%description -n nautilus-sendto-gnome-bluetooth
+A nautilus-sendto plugin for sending files via GNOME Bluetooth.
+
+%description -n nautilus-sendto-gnome-bluetooth -l pl.UTF-8
+Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
+
 %prep
 %setup -q
 sed -i 's/en@shaw//g' po/LINGUAS
@@ -118,6 +133,7 @@ rm -f po/{en@shaw,mus}.po
 	--disable-icon-update \
 	--disable-introspection \
 	--disable-schemas-install \
+	--disable-silent-rules \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
@@ -128,6 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/nautilus-sendto/plugins/*.la
 
 %find_lang %{name} --with-gnome --with-omf --all-name
 
@@ -183,3 +200,7 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gnome-bluetooth
+
+%files -n nautilus-sendto-gnome-bluetooth
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/nautilus-sendto/plugins/libnstbluetooth.so

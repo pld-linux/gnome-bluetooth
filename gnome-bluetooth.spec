@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	2.32.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.32/%{name}-%{version}.tar.bz2
@@ -29,14 +29,14 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	udev-glib-devel >= 144-2
 Requires(post,postun):	glib2 >= 1:2.26.0
-Requires(post,postun):	gtk+2
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
 Requires:	dbus(org.openobex.client)
 Requires:	dbus-glib
 Requires:	dconf
 Requires:	gtk+2 >= 2:2.20.0
-Requires:	hicolor-icon-theme
 Obsoletes:	bluez-gnome < 1.9
 Obsoletes:	bluez-pin
 Obsoletes:	python-gnome-bluetooth

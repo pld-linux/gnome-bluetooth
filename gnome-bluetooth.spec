@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	2.91.5
-Release:	0.1
+Release:	0.2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.91/%{name}-%{version}.tar.bz2
@@ -151,6 +151,9 @@ rm -rf $RPM_BUILD_ROOT
         $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/libbluetooth.la \
         $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.la
 
+# workaround for (broken?) GnomeBluetoothApplet-1.0.typelib
+ln -s %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0 $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth-applet.so.0
+
 %find_lang %{name} --with-gnome --with-omf --all-name
 
 %clean
@@ -184,7 +187,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/plugins/*.so
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0
-%attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0.0.0
+%attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.*.*.*
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth-applet.so.0
 %{_libdir}/gnome-bluetooth/GnomeBluetoothApplet-1.0.typelib
 %{_iconsdir}/hicolor/*/*/*.png
 %{_iconsdir}/hicolor/*/*/*.svg

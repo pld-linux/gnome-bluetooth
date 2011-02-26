@@ -15,7 +15,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.28.0
 BuildRequires:	gnome-common
-BuildRequires:	gnome-control-center-devel >= 2.91.6
+BuildRequires:	gnome-control-center-devel >= 2.91.90
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk+3-devel >= 3.0.0
@@ -24,7 +24,7 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
-BuildRequires:	nautilus-devel >= 2.91.6
+BuildRequires:	nautilus-devel >= 2.91.90
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	udev-glib-devel >= 144-2
@@ -213,6 +213,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gnome-bluetooth
 
-#%files -n nautilus-sendto-gnome-bluetooth
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libdir}/nautilus-sendto/plugins/libnstbluetooth.so
+%files -n nautilus-sendto-gnome-bluetooth
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/nautilus-sendto/plugins/libnstbluetooth.so

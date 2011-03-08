@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	2.91.5
-Release:	0.2
+Version:	2.91.91
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/2.91/%{name}-%{version}.tar.bz2
-# Source0-md5:	35a9ea6ced348571fb072dd1d4b65fc0
+# Source0-md5:	43b00d0ad7136641779d9e9a201340d6
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
@@ -24,20 +24,19 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
-BuildRequires:	nautilus-devel >= 2.91.90
+BuildRequires:	nautilus-sendto-devel >= 2.91.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
-BuildRequires:	udev-glib-devel >= 144-2
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	hicolor-icon-theme
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
 Requires:	dbus(org.openobex.client)
 Requires:	dbus-glib
 Requires:	dconf
+Requires:	hicolor-icon-theme
 Obsoletes:	bluez-gnome < 1.9
 Obsoletes:	bluez-pin
 Obsoletes:	python-gnome-bluetooth
@@ -108,7 +107,7 @@ Summary:	nautilus-sendto GNOME Bluetooth plugin
 Summary(pl.UTF-8):	Wtyczka nautilus-sendto dla GNOME Bluetooth
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	nautilus-sendto >= 2.28.1
+Requires:	nautilus-sendto >= 2.91.0
 
 %description -n nautilus-sendto-gnome-bluetooth
 A nautilus-sendto plugin for sending files via GNOME Bluetooth.
@@ -118,9 +117,6 @@ Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
 
 %prep
 %setup -q
-sed -i 's/en@shaw//g' po/LINGUAS
-sed -i 's/mus//g' po/LINGUAS
-rm -f po/{en@shaw,mus}.po
 
 %build
 %{__gtkdocize}
@@ -135,7 +131,7 @@ rm -f po/{en@shaw,mus}.po
 	--disable-desktop-update \
 	--disable-icon-update \
 	--enable-introspection \
-	--disable-schemas-install \
+	--disable-schemas-compile \
 	--disable-silent-rules \
 	--with-html-dir=%{_gtkdocdir}
 %{__make}
@@ -149,7 +145,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth.la \
         $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la \
         $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/libbluetooth.la \
-        $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.la
+        $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.la \
+        $RPM_BUILD_ROOT%{_libdir}/nautilus-sendto/plugins/libnstbluetooth.la
 
 # workaround for (broken?) GnomeBluetoothApplet-1.0.typelib
 ln -s %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0 $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth-applet.so.0
@@ -177,6 +174,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
 %attr(755,root,root) %{_bindir}/bluetooth-wizard
 %{_desktopdir}/bluetooth-properties.desktop
+%{_desktopdir}/bluetooth-sendto.desktop
+%{_desktopdir}/bluetooth-wizard.desktop
 %{_sysconfdir}/xdg/autostart/bluetooth-applet.desktop
 %{_datadir}/GConf/gsettings/gnome-bluetooth*
 %{_datadir}/glib-2.0/schemas/*.gschema.xml

@@ -117,9 +117,8 @@ Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
 
 %prep
 %setup -q
-sed -i 's/en@shaw//g' po/LINGUAS
 sed -i 's/mus//g' po/LINGUAS
-rm -f po/{en@shaw,mus}.po
+%{__rm} po/mus.po
 
 %build
 %{__gtkdocize}
@@ -145,8 +144,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/nautilus-sendto/plugins/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus-sendto/plugins/*.la
 
 %find_lang %{name} --with-gnome --with-omf --all-name
 

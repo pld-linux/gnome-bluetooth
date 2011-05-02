@@ -2,11 +2,12 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	3.0.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.0/%{name}-%{version}.tar.bz2
 # Source0-md5:	390f878091a0f21cf2578f3cbc36dbff
+Source1:	61-gnome-bluetooth-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
@@ -37,6 +38,7 @@ Requires:	dbus(org.openobex.client)
 Requires:	dbus-glib
 Requires:	dconf
 Requires:	hicolor-icon-theme
+Requires:	udev-acl
 Obsoletes:	bluez-gnome < 1.9
 Obsoletes:	bluez-pin
 Obsoletes:	python-gnome-bluetooth
@@ -138,9 +140,12 @@ Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth.la \
         $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la \
@@ -188,6 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/bluetooth-applet.1*
 %{_mandir}/man1/bluetooth-sendto.1*
 %{_mandir}/man1/bluetooth-wizard.1*
+/lib/udev/rules.d/61-gnome-bluetooth-rfkill.rules
 
 %files libs
 %defattr(644,root,root,755)

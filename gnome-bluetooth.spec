@@ -146,6 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus-sendto/plugins/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name} --with-gnome --with-omf --all-name
 
@@ -193,7 +194,6 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-bluetooth.so
-%{_libdir}/libgnome-bluetooth.la
 %{_includedir}/gnome-bluetooth
 %{_pkgconfigdir}/gnome-bluetooth-1.0.pc
 

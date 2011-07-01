@@ -117,8 +117,6 @@ Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
 
 %prep
 %setup -q
-sed -i 's/mus//g' po/LINGUAS
-%{__rm} po/mus.po
 
 %build
 %{__gtkdocize}

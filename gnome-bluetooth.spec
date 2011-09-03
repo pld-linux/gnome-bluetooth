@@ -5,8 +5,8 @@ Version:	3.1.4
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.1/%{name}-%{version}.tar.bz2
-# Source0-md5:	b8d122aefddca91358bcb01af5243d27
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.1/%{name}-%{version}.tar.xz
+# Source0-md5:	1c096dc0dc8187988c695d2959a8e3b1
 Source1:	61-%{name}-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52

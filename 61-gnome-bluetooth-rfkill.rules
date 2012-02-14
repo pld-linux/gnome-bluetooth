@@ -1,5 +1,0 @@
-# Get access to /dev/rfkill for users
-ENV{ACL_MANAGE}=="0", GOTO="gnome_bluetooth_end"
-ACTION!="add|change", GOTO="gnome_bluetooth_end"
-KERNEL=="rfkill", TAG+="udev-acl"
-LABEL="gnome_bluetooth_end"

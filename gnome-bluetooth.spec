@@ -2,12 +2,13 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	3.2.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.2/%{name}-%{version}.tar.xz
 # Source0-md5:	92d5a6b20ecc1bb854aaab67b0a155d6
 Source1:	61-%{name}-rfkill.rules
+Patch0:		%{name}-am.patch
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
@@ -119,6 +120,7 @@ Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__gtkdocize}

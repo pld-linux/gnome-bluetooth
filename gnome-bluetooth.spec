@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.4.2
+Version:	3.6.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.4/%{name}-%{version}.tar.xz
-# Source0-md5:	ac7390b9fbfa1d2cc65e16a6a194fb95
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.6/%{name}-%{version}.tar.xz
+# Source0-md5:	0efd662c199d20559d82b0a5f8bd8bc0
 Source1:	61-%{name}-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
@@ -15,10 +15,8 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.30.0
 BuildRequires:	gnome-common
-BuildRequires:	gnome-doc-utils
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
-BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
@@ -28,6 +26,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
+BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
@@ -94,7 +93,6 @@ Statyczna biblioteka GNOME Bluetooth.
 Summary:	GNOME Bluetooth library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth
 Group:		Documentation
-Requires:	gtk-doc-common
 
 %description apidocs
 GNOME Bluetooth library API documentation.
@@ -127,7 +125,6 @@ Wtyczka nautilus-sentdo do wysyłania plików poprzez GNOME Bluetooth.
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-gtk-doc \
 	--disable-desktop-update \
 	--disable-icon-update \
 	--enable-introspection \
@@ -192,7 +189,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-bluetooth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.10
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.11
 %dir %{_libdir}/gnome-bluetooth
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0

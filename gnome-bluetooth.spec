@@ -67,7 +67,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla podsystemu GNOME Bluetooth
 License:	LGPL v2+
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.30.0
+Requires:	glib2-devel >= 1:2.36.0
 Requires:	gtk+3-devel >= 3.0.0
 
 %description devel

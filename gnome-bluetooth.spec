@@ -1,19 +1,19 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.8.1
+Version:	3.10.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.8/%{name}-%{version}.tar.xz
-# Source0-md5:	a45c401daa15937a31c59d49943c59db
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.10/%{name}-%{version}.tar.xz
+# Source0-md5:	c112cdca037f90168b04c0f12855006a
 Source1:	61-%{name}-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-devel >= 0.17
-BuildRequires:	glib2-devel >= 1:2.30.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.0.0
@@ -53,7 +53,7 @@ Summary:	GNOME Bluetooth subsystem shared libraries
 Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME Bluetooth
 License:	LGPL v2+
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.30.0
+Requires:	glib2 >= 1:2.36.0
 
 %description libs
 GNOME Bluetooth subsystem shared libraries.
@@ -104,6 +104,7 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 %setup -q
 
 %build
+mkdir m4
 %{__gtkdocize}
 %{__intltoolize}
 %{__libtoolize}
@@ -170,7 +171,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-bluetooth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.11
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.12
 %dir %{_libdir}/gnome-bluetooth
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so
 %attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0

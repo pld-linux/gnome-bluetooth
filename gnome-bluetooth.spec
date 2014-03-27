@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.10.0
+Version:	3.12.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.10/%{name}-%{version}.tar.xz
-# Source0-md5:	c112cdca037f90168b04c0f12855006a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.12/%{name}-%{version}.tar.xz
+# Source0-md5:	c23666aa1d0bfc37be38f45493679de2
 Source1:	61-%{name}-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
@@ -16,13 +16,14 @@ BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	glib2-devel >= 1:2.36.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.10.0
-BuildRequires:	gtk+3-devel >= 3.0.0
+BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	udev-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
 BuildRequires:	yelp-tools
@@ -68,7 +69,7 @@ License:	LGPL v2+
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.36.0
-Requires:	gtk+3-devel >= 3.0.0
+Requires:	gtk+3-devel >= 3.12.0
 
 %description devel
 Header files for GNOME Bluetooth subsystem.
@@ -104,11 +105,10 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 %setup -q
 
 %build
-mkdir m4
 %{__gtkdocize}
 %{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
@@ -130,11 +130,7 @@ install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
 install %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth.la \
-        $RPM_BUILD_ROOT%{_libdir}/gnome-bluetooth/plugins/*.la
-
-# workaround for (broken?) GnomeBluetoothApplet-1.0.typelib
-ln -s %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0 $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth-applet.so.0
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth.la
 
 %find_lang %{name} --with-gnome --with-omf --all-name
 
@@ -156,28 +152,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
-%attr(755,root,root) %{_bindir}/bluetooth-wizard
 %{_desktopdir}/bluetooth-sendto.desktop
-%{_desktopdir}/bluetooth-wizard.desktop
 %{_datadir}/gnome-bluetooth
-%dir %{_libdir}/gnome-bluetooth/plugins
-%attr(755,root,root) %{_libdir}/gnome-bluetooth/plugins/*.so
 %{_iconsdir}/hicolor/*/*/*.png
 %{_iconsdir}/hicolor/*/*/*.svg
 %{_mandir}/man1/bluetooth-sendto.1*
-%{_mandir}/man1/bluetooth-wizard.1*
 /lib/udev/rules.d/61-gnome-bluetooth-rfkill.rules
 
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgnome-bluetooth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.12
-%dir %{_libdir}/gnome-bluetooth
-%attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so
-%attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.0
-%attr(755,root,root) %{_libdir}/gnome-bluetooth/libgnome-bluetooth-applet.so.*.*.*
-%attr(755,root,root) %{_libdir}/libgnome-bluetooth-applet.so.0
-%{_libdir}/gnome-bluetooth/GnomeBluetoothApplet-1.0.typelib
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.13
 %{_libdir}/girepository-1.0/GnomeBluetooth-1.0.typelib
 
 %files devel

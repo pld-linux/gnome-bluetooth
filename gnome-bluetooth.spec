@@ -2,7 +2,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	3.12.0
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.12/%{name}-%{version}.tar.xz
@@ -94,6 +94,9 @@ Statyczna biblioteka GNOME Bluetooth.
 Summary:	GNOME Bluetooth library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 GNOME Bluetooth library API documentation.
@@ -128,7 +131,7 @@ install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
+cp -p %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth.la
 

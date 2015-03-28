@@ -1,19 +1,19 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.12.0
-Release:	3
+Version:	3.16.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	c23666aa1d0bfc37be38f45493679de2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.16/%{name}-%{version}.tar.xz
+# Source0-md5:	f52643dda9c4271e2b5dddf5811cc8ad
 Source1:	61-%{name}-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.36.0
+BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.12.0
@@ -54,7 +54,7 @@ Summary:	GNOME Bluetooth subsystem shared libraries
 Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME Bluetooth
 License:	LGPL v2+
 Group:		X11/Libraries
-Requires:	glib2 >= 1:2.36.0
+Requires:	glib2 >= 1:2.38.0
 
 %description libs
 GNOME Bluetooth subsystem shared libraries.
@@ -68,7 +68,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe dla podsystemu GNOME Bluetooth
 License:	LGPL v2+
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.36.0
+Requires:	glib2-devel >= 1:2.38.0
 Requires:	gtk+3-devel >= 3.12.0
 
 %description devel

@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.16.1
+Version:	3.18.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.16/%{name}-%{version}.tar.xz
-# Source0-md5:	de7eb807e3ae913bca53917b195d9d9f
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.18/%{name}-%{version}.tar.xz
+# Source0-md5:	040128a3c3cf6809381fb474a6297cec
 Source1:	61-%{name}-rfkill.rules
 URL:		http://live.gnome.org/GnomeBluetooth
 BuildRequires:	autoconf >= 2.52
@@ -18,6 +18,7 @@ BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-progs
@@ -26,7 +27,6 @@ BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	udev-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
-BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.26.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}

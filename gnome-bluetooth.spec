@@ -17,6 +17,7 @@ BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
@@ -27,7 +28,7 @@ BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	udev-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel
-Requires(post,postun):	glib2 >= 1:2.26.0
+Requires(post,postun):	glib2 >= 1:2.38.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
@@ -55,6 +56,8 @@ Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME Bluetooth
 License:	LGPL v2+
 Group:		X11/Libraries
 Requires:	glib2 >= 1:2.38.0
+Requires:	gtk+3 >= 3.12.0
+Requires:	libnotify >= 0.7.0
 
 %description libs
 GNOME Bluetooth subsystem shared libraries.
@@ -70,6 +73,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.38.0
 Requires:	gtk+3-devel >= 3.12.0
+Requires:	udev-devel
 
 %description devel
 Header files for GNOME Bluetooth subsystem.

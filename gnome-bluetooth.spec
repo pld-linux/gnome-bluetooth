@@ -1,28 +1,25 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.20.1
+Version:	3.28.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	0768931f17eaba8b05eddacf17204f60
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.28/%{name}-%{version}.tar.xz
+# Source0-md5:	75ec82570d0baf18b6cbff86c2712e87
 Source1:	61-%{name}-rfkill.rules
+Patch0:		%{name}-gtkdocdir.patch
 URL:		http://live.gnome.org/GnomeBluetooth
-BuildRequires:	autoconf >= 2.52
-BuildRequires:	automake >= 1:1.11.2
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.38.0
-BuildRequires:	gnome-common
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	gtk-doc >= 1.9
-BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
-BuildRequires:	libtool
 BuildRequires:	libxml2-progs
+BuildRequires:	meson >= 0.43.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	udev-devel
@@ -110,34 +107,20 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__gtkdocize}
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure \
-	--disable-desktop-update \
-	--disable-icon-update \
-	--enable-introspection \
-	--disable-schemas-compile \
-	--disable-silent-rules \
-	--with-html-dir=%{_gtkdocdir}
-%{__make}
+%meson build \
+	-Dgtk_doc=true
+%meson_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%meson_install -C build
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgnome-bluetooth.la
 
 %find_lang %{name} --with-gnome --with-omf --all-name
 
@@ -157,7 +140,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog* NEWS README
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
 %{_desktopdir}/bluetooth-sendto.desktop
 %{_datadir}/gnome-bluetooth

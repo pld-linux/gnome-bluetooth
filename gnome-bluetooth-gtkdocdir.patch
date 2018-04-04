@@ -1,0 +1,11 @@
+--- gnome-bluetooth-3.28.0/docs/reference/libgnome-bluetooth/meson.build.gtkdoc	2018-04-04 21:58:30.171226505 +0200
++++ gnome-bluetooth-3.28.0/docs/reference/libgnome-bluetooth/meson.build	2018-04-04 21:58:38.234354561 +0200
+@@ -20,7 +20,7 @@ configure_file(
+   configuration: version_conf
+ )
+ 
+-doc_path = join_paths(gnomebt_datadir, 'gtk-doc', 'html', meson.project_name())
++doc_path = join_paths(gnomebt_datadir, 'doc', 'gtk-doc', 'html', meson.project_name())
+ 
+ gnome.gtkdoc(
+   meson.project_name(),

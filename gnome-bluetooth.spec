@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.28.0
+Version:	3.28.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.28/%{name}-%{version}.tar.xz
-# Source0-md5:	75ec82570d0baf18b6cbff86c2712e87
+# Source0-md5:	eff705fadd5e0bb44a087d10fcbe34af
 Source1:	61-%{name}-rfkill.rules
 Patch0:		%{name}-gtkdocdir.patch
 URL:		http://live.gnome.org/GnomeBluetooth
@@ -21,7 +21,7 @@ BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-progs
 BuildRequires:	meson >= 0.43.0
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.592
+BuildRequires:	rpmbuild(macros) >= 1.727
 BuildRequires:	udev-devel
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXi-devel

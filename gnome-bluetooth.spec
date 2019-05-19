@@ -1,15 +1,14 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.28.2
+Version:	3.32.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.28/%{name}-%{version}.tar.xz
-# Source0-md5:	eff705fadd5e0bb44a087d10fcbe34af
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.32/%{name}-%{version}.tar.xz
+# Source0-md5:	5b3d66f564a5067ea154750cdb6d850d
 Source1:	61-%{name}-rfkill.rules
-Patch0:		%{name}-gtkdocdir.patch
-URL:		http://live.gnome.org/GnomeBluetooth
+URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.38.0
@@ -19,12 +18,11 @@ BuildRequires:	gtk-doc >= 1.9
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-progs
-BuildRequires:	meson >= 0.43.0
+BuildRequires:	meson >= 0.49.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.727
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	udev-devel
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXi-devel
 Requires(post,postun):	glib2 >= 1:2.38.0
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name}-libs = %{version}-%{release}
@@ -70,26 +68,13 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.38.0
 Requires:	gtk+3-devel >= 3.12.0
-Requires:	udev-devel
+Obsoletes:	gnome-bluetooth-static
 
 %description devel
 Header files for GNOME Bluetooth subsystem.
 
 %description devel -l pl.UTF-8
 Pliki nagłówkowe dla podsystemu GNOME Bluetooth.
-
-%package static
-Summary:	Static GNOME Bluetooth library
-Summary(pl.UTF-8):	Statyczna biblioteka GNOME Bluetooth
-License:	LGPL v2+
-Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-
-%description static
-Static GNOME Bluetooth library.
-
-%description static -l pl.UTF-8
-Statyczna biblioteka GNOME Bluetooth.
 
 %package apidocs
 Summary:	GNOME Bluetooth library API documentation
@@ -107,18 +92,17 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %meson build \
 	-Dgtk_doc=true
-%meson_build -C build
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
-%meson_install -C build
+%ninja_install -C build
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 
@@ -144,8 +128,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
 %{_desktopdir}/bluetooth-sendto.desktop
 %{_datadir}/gnome-bluetooth
-%{_iconsdir}/hicolor/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.svg
+%{_iconsdir}/hicolor/*x*/apps/bluetooth.png
+%{_iconsdir}/hicolor/*x*/status/bluetooth-*.png
+%{_iconsdir}/hicolor/scalable/apps/bluetooth.svg
+%{_iconsdir}/hicolor/scalable/status/bluetooth-*.svg
 %{_mandir}/man1/bluetooth-sendto.1*
 /lib/udev/rules.d/61-gnome-bluetooth-rfkill.rules
 

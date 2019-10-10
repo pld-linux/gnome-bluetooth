@@ -1,12 +1,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.32.1
+Version:	3.34.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.32/%{name}-%{version}.tar.xz
-# Source0-md5:	5b3d66f564a5067ea154750cdb6d850d
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	0c567e124a52e8ddc31c8bed0c3e57a1
 Source1:	61-%{name}-rfkill.rules
 URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml
@@ -95,7 +95,9 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %build
 %meson build \
-	-Dgtk_doc=true
+	-Dgtk_doc=true \
+	-Dicon_update=false
+
 %ninja_build -C build
 
 %install
@@ -106,7 +108,7 @@ install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 
-%find_lang %{name} --with-gnome --with-omf --all-name
+%find_lang %{name} --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -124,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog* NEWS README
+%doc AUTHORS MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
 %{_desktopdir}/bluetooth-sendto.desktop
 %{_datadir}/gnome-bluetooth

@@ -1,12 +1,16 @@
+#
+# Conditional build:
+%bcond_without	apidocs	# API documentation
+
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.34.1
+Version:	3.34.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	09b6bab7ceaafb35da766a5476fbc466
+# Source0-md5:	c95efa0089942679945b3527bb1f6656
 Source1:	61-%{name}-rfkill.rules
 URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml
@@ -14,7 +18,7 @@ BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.38.0
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gtk+3-devel >= 3.12.0
-BuildRequires:	gtk-doc >= 1.9
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
 BuildRequires:	libcanberra-gtk3-devel
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-progs
@@ -82,7 +86,7 @@ Pliki nagłówkowe dla podsystemu GNOME Bluetooth.
 Summary:	GNOME Bluetooth library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -97,7 +101,7 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %build
 %meson build \
-	-Dgtk_doc=true \
+	%{?with_apidocs:-Dgtk_doc=true} \
 	-Dicon_update=false
 
 %ninja_build -C build
@@ -128,7 +132,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS MAINTAINERS NEWS README
+%doc AUTHORS MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
 %{_desktopdir}/bluetooth-sendto.desktop
 %{_datadir}/gnome-bluetooth
@@ -152,6 +156,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/gnome-bluetooth-1.0.pc
 %{_datadir}/gir-1.0/GnomeBluetooth-1.0.gir
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gnome-bluetooth
+%endif

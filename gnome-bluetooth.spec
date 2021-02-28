@@ -86,9 +86,7 @@ Pliki nagłówkowe dla podsystemu GNOME Bluetooth.
 Summary:	GNOME Bluetooth library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth
 Group:		Documentation
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 GNOME Bluetooth library API documentation.

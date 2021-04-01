@@ -5,12 +5,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.34.3
+Version:	3.34.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-bluetooth/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	c82f7df6a411c897d4d59337d5d9a789
+Source0:	https://download.gnome.org/sources/gnome-bluetooth/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	d83faa54abaf64bb40b5313bc233e74e
 Source1:	61-%{name}-rfkill.rules
 URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml
@@ -25,6 +25,7 @@ BuildRequires:	libxml2-progs
 BuildRequires:	meson >= 0.49.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel
@@ -38,9 +39,9 @@ Requires:	dconf
 Requires:	hicolor-icon-theme
 Requires:	udev-acl
 Obsoletes:	bluez-gnome < 1.9
-Obsoletes:	bluez-pin
-Obsoletes:	nautilus-sendto-gnome-bluetooth
-Obsoletes:	python-gnome-bluetooth
+Obsoletes:	bluez-pin < 0.31
+Obsoletes:	nautilus-sendto-gnome-bluetooth < 3.8
+Obsoletes:	python-gnome-bluetooth < 0.5.1-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -74,7 +75,7 @@ Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.38.0
 Requires:	gtk+3-devel >= 3.12.0
-Obsoletes:	gnome-bluetooth-static
+Obsoletes:	gnome-bluetooth-static < 3.32
 
 %description devel
 Header files for GNOME Bluetooth subsystem.

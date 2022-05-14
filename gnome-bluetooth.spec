@@ -5,34 +5,35 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	3.34.5
-Release:	2
+Version:	42.0
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-bluetooth/3.34/%{name}-%{version}.tar.xz
-# Source0-md5:	d83faa54abaf64bb40b5313bc233e74e
+Source0:	https://download.gnome.org/sources/gnome-bluetooth/42/%{name}-%{version}.tar.xz
+# Source0-md5:	22d60e6294c8c05d7c8e8dcb507f191a
 Source1:	61-%{name}-rfkill.rules
 URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	glib2-devel >= 1:2.38.0
+BuildRequires:	glib2-devel >= 1:2.44
 BuildRequires:	gobject-introspection-devel >= 0.10.0
-BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gsound-devel
+BuildRequires:	gtk4-devel >= 4.4
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
-BuildRequires:	libcanberra-gtk3-devel
+BuildRequires:	libadwaita-devel >= 1.1
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-progs
-BuildRequires:	meson >= 0.49.0
+BuildRequires:	meson >= 0.58.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	udev-devel
+BuildRequires:	upower-devel >= 0.99.14
 BuildRequires:	xz
-Requires(post,postun):	glib2 >= 1:2.38.0
-Requires(post,postun):	gtk-update-icon-cache
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	gnome-bluetooth3-libs = %{version}-%{release}
+Requires:	gnome-bluetooth3-ui-libs = %{version}-%{release}
 Requires:	bluez >= 4.22
 Requires:	dbus(org.openobex.client)
 Requires:	dconf
@@ -52,47 +53,80 @@ Bluetooth devices.
 GNOME Bluetooth dostarcza narzędzia do kontrolowania i komunikowania
 się z urządzeniami Bluetooth.
 
-%package libs
-Summary:	GNOME Bluetooth subsystem shared libraries
-Summary(pl.UTF-8):	Współdzielone biblioteki dla podsystemu GNOME Bluetooth
+%package -n gnome-bluetooth3-libs
+Summary:	GNOME Bluetooth 3.0 subsystem shared library
+Summary(pl.UTF-8):	Biblioteka współdzielona podsystemu GNOME Bluetooth 3.0
 License:	LGPL v2+
-Group:		X11/Libraries
-Requires:	glib2 >= 1:2.38.0
-Requires:	gtk+3 >= 3.12.0
-Requires:	libnotify >= 0.7.0
+Group:		Libraries
+Requires:	glib2 >= 1:2.44
+Requires:	upower-libs >= 0.99.14
 
-%description libs
-GNOME Bluetooth subsystem shared libraries.
+%description -n gnome-bluetooth3-libs
+GNOME Bluetooth 3.0 subsystem shared library.
 
-%description libs -l pl.UTF-8
-Współdzielone biblioteki dla podsystemu GNOME Bluetooth.
+%description -n gnome-bluetooth3-libs -l pl.UTF-8
+Biblioteka współdzielona podsystemu GNOME Bluetooth 3.0.
 
-%package devel
-Summary:	Header files for GNOME Bluetooth subsystem
-Summary(pl.UTF-8):	Pliki nagłówkowe dla podsystemu GNOME Bluetooth
+%package -n gnome-bluetooth3-devel
+Summary:	Header files for GNOME Bluetooth 3.0 subsystem
+Summary(pl.UTF-8):	Pliki nagłówkowe podsystemu GNOME Bluetooth 3.0
 License:	LGPL v2+
 Group:		X11/Development/Libraries
-Requires:	%{name}-libs = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.38.0
-Requires:	gtk+3-devel >= 3.12.0
+Requires:	gnome-bluetooth3-libs = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.44
 Obsoletes:	gnome-bluetooth-static < 3.32
 
-%description devel
-Header files for GNOME Bluetooth subsystem.
+%description -n gnome-bluetooth3-devel
+Header files for GNOME Bluetooth 3.0 subsystem.
 
-%description devel -l pl.UTF-8
-Pliki nagłówkowe dla podsystemu GNOME Bluetooth.
+%description -n gnome-bluetooth3-devel -l pl.UTF-8
+Pliki nagłówkowe podsystemu GNOME Bluetooth 3.0.
 
-%package apidocs
-Summary:	GNOME Bluetooth library API documentation
-Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth
+%package -n gnome-bluetooth3-ui-libs
+Summary:	GNOME Bluetooth 3.0 subsystem UI shared library
+Summary(pl.UTF-8):	Współdzielone biblioteki UI podsystemu GNOME Bluetooth 3.0
+License:	LGPL v2+
+Group:		X11/Libraries
+Requires:	gnome-bluetooth3-libs = %{version}-%{release}
+Requires:	glib2 >= 1:2.44
+Requires:	gtk4 >= 4.4
+Requires:	libadwaita >= 1.1
+Requires:	libnotify-devel >= 0.7.0
+Requires:	upower-libs >= 0.99.14
+
+%description -n gnome-bluetooth3-ui-libs
+GNOME Bluetooth 3.0 subsystem UI shared library.
+
+%description -n gnome-bluetooth3-ui-libs -l pl.UTF-8
+Współdzielone biblioteki UI podsystemu GNOME Bluetooth 3.0.
+
+%package -n gnome-bluetooth3-ui-devel
+Summary:	Header files for GNOME Bluetooth 3.0 subsystem UI
+Summary(pl.UTF-8):	Pliki nagłówkowe UI podsystemu GNOME Bluetooth 3.0
+License:	LGPL v2+
+Group:		X11/Development/Libraries
+Requires:	gnome-bluetooth3-devel = %{version}-%{release}
+Requires:	gnome-bluetooth3-ui-libs = %{version}-%{release}
+Requires:	glib2-devel >= 1:2.44
+Requires:	gtk4-devel >= 4.4
+Requires:	libadwaita-devel >= 1.1
+
+%description -n gnome-bluetooth3-ui-devel
+Header files for GNOME Bluetooth 3.0 subsystem UI.
+
+%description -n gnome-bluetooth3-ui-devel -l pl.UTF-8
+Pliki nagłówkowe UI podsystemu GNOME Bluetooth 3.0.
+
+%package -n gnome-bluetooth3-apidocs
+Summary:	GNOME Bluetooth 3.0 library API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki GNOME Bluetooth 3.0
 Group:		Documentation
 BuildArch:	noarch
 
-%description apidocs
+%description -n gnome-bluetooth3-apidocs
 GNOME Bluetooth library API documentation.
 
-%description apidocs -l pl.UTF-8
+%description -n gnome-bluetooth3-apidocs -l pl.UTF-8
 Dokumentacja API biblioteki GNOME Bluetooth.
 
 %prep
@@ -100,8 +134,7 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 
 %build
 %meson build \
-	%{?with_apidocs:-Dgtk_doc=true} \
-	-Dicon_update=false
+	%{?with_apidocs:-Dgtk_doc=true}
 
 %ninja_build -C build
 
@@ -113,50 +146,53 @@ install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 
-%find_lang %{name} --with-gnome --all-name
+%find_lang %{name}-3.0
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-%update_icon_cache hicolor
-%glib_compile_schemas
+%post	-n gnome-bluetooth3-libs -p /sbin/ldconfig
+%postun	-n gnome-bluetooth3-libs -p /sbin/ldconfig
 
-%postun
-%update_icon_cache hicolor
-%glib_compile_schemas
+%post	-n gnome-bluetooth3-ui-libs -p /sbin/ldconfig
+%postun	-n gnome-bluetooth3-ui-libs -p /sbin/ldconfig
 
-%post	libs -p /sbin/ldconfig
-%postun	libs -p /sbin/ldconfig
-
-%files -f %{name}.lang
+%files -f %{name}-3.0.lang
 %defattr(644,root,root,755)
 %doc AUTHORS MAINTAINERS NEWS README.md
 %attr(755,root,root) %{_bindir}/bluetooth-sendto
 %{_desktopdir}/bluetooth-sendto.desktop
-%{_datadir}/gnome-bluetooth
-%{_iconsdir}/hicolor/*x*/apps/bluetooth.png
-%{_iconsdir}/hicolor/*x*/status/bluetooth-*.png
-%{_iconsdir}/hicolor/scalable/apps/bluetooth.svg
-%{_iconsdir}/hicolor/scalable/status/bluetooth-*.svg
 %{_mandir}/man1/bluetooth-sendto.1*
 /lib/udev/rules.d/61-gnome-bluetooth-rfkill.rules
 
-%files libs
+%files -n gnome-bluetooth3-libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-bluetooth.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth.so.13
-%{_libdir}/girepository-1.0/GnomeBluetooth-1.0.typelib
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth-3.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth-3.0.so.13
+%{_libdir}/girepository-1.0/GnomeBluetooth-3.0.typelib
+%{_datadir}/gnome-bluetooth-3.0
 
-%files devel
+%files -n gnome-bluetooth3-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgnome-bluetooth.so
-%{_includedir}/gnome-bluetooth
-%{_pkgconfigdir}/gnome-bluetooth-1.0.pc
-%{_datadir}/gir-1.0/GnomeBluetooth-1.0.gir
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth-3.0.so
+# no C headers here
+%{_datadir}/gir-1.0/GnomeBluetooth-3.0.gir
+%{_pkgconfigdir}/gnome-bluetooth-3.0.pc
+
+%files -n gnome-bluetooth3-ui-libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth-ui-3.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgnome-bluetooth-ui-3.0.so.13
+
+%files -n gnome-bluetooth3-ui-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libgnome-bluetooth-ui-3.0.so
+%dir %{_includedir}/gnome-bluetooth-3.0
+%{_includedir}/gnome-bluetooth-3.0/bluetooth-settings-widget.h
+%{_pkgconfigdir}/gnome-bluetooth-ui-3.0.pc
 
 %if %{with apidocs}
-%files apidocs
+%files -n gnome-bluetooth3-apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/gnome-bluetooth
+%{_gtkdocdir}/gnome-bluetooth-3.0
 %endif

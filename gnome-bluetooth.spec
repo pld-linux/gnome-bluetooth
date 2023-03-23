@@ -5,12 +5,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	42.4
+Version:	42.5
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/gnome-bluetooth/42/%{name}-%{version}.tar.xz
-# Source0-md5:	357b57ddc7b802ba48f9928de1c45109
+# Source0-md5:	686d360ba843521db42da02a552b045f
 Source1:	61-%{name}-rfkill.rules
 URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml

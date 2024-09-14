@@ -5,12 +5,12 @@
 Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
-Version:	46.1
+Version:	47.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://download.gnome.org/sources/gnome-bluetooth/46/%{name}-%{version}.tar.xz
-# Source0-md5:	6f1f8e6b51c4903727ef41ec6c398f13
+Source0:	https://download.gnome.org/sources/gnome-bluetooth/47/%{name}-%{version}.tar.xz
+# Source0-md5:	ddb9ee4498166a51a5acd5ecc8ded7f8
 Source1:	61-%{name}-rfkill.rules
 URL:		https://wiki.gnome.org/Projects/GnomeBluetooth
 BuildRequires:	docbook-dtd412-xml
@@ -18,9 +18,9 @@ BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	glib2-devel >= 1:2.44
 BuildRequires:	gobject-introspection-devel >= 0.10.0
 BuildRequires:	gsound-devel
-BuildRequires:	gtk4-devel >= 4.4
+BuildRequires:	gtk4-devel >= 4.15.2
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.9}
-BuildRequires:	libadwaita-devel >= 1.4
+BuildRequires:	libadwaita-devel >= 1.6
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libxml2-progs
 BuildRequires:	meson >= 0.58.0
@@ -89,8 +89,8 @@ License:	LGPL v2+
 Group:		X11/Libraries
 Requires:	gnome-bluetooth3-libs = %{version}-%{release}
 Requires:	glib2 >= 1:2.44
-Requires:	gtk4 >= 4.4
-Requires:	libadwaita >= 1.4
+Requires:	gtk4 >= 4.15.2
+Requires:	libadwaita >= 1.6
 Requires:	libnotify-devel >= 0.7.0
 Requires:	upower-libs >= 0.99.14
 
@@ -108,8 +108,8 @@ Group:		X11/Development/Libraries
 Requires:	gnome-bluetooth3-devel = %{version}-%{release}
 Requires:	gnome-bluetooth3-ui-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.44
-Requires:	gtk4-devel >= 4.4
-Requires:	libadwaita-devel >= 1.4
+Requires:	gtk4-devel >= 4.15.2
+Requires:	libadwaita-devel >= 1.6
 
 %description -n gnome-bluetooth3-ui-devel
 Header files for GNOME Bluetooth 3.0 subsystem UI.

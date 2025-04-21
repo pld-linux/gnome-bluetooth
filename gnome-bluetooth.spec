@@ -134,16 +134,16 @@ Dokumentacja API biblioteki GNOME Bluetooth.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{?with_apidocs:-Dgtk_doc=true}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/lib/udev/rules.d
 
-%ninja_install -C build
+%meson_install
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT/lib/udev/rules.d
 

@@ -6,7 +6,7 @@ Summary:	GNOME Bluetooth Subsystem
 Summary(pl.UTF-8):	Podsystem GNOME Bluetooth
 Name:		gnome-bluetooth
 Version:	47.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/gnome-bluetooth/47/%{name}-%{version}.tar.xz
@@ -91,7 +91,7 @@ Requires:	gnome-bluetooth3-libs = %{version}-%{release}
 Requires:	glib2 >= 1:2.44
 Requires:	gtk4 >= 4.15.2
 Requires:	libadwaita >= 1.6
-Requires:	libnotify-devel >= 0.7.0
+Requires:	libnotify >= 0.7.0
 Requires:	upower-libs >= 0.99.14
 
 %description -n gnome-bluetooth3-ui-libs
@@ -110,6 +110,7 @@ Requires:	gnome-bluetooth3-ui-libs = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.44
 Requires:	gtk4-devel >= 4.15.2
 Requires:	libadwaita-devel >= 1.6
+Requires:	libnotify-devel >= 0.7.0
 
 %description -n gnome-bluetooth3-ui-devel
 Header files for GNOME Bluetooth 3.0 subsystem UI.
